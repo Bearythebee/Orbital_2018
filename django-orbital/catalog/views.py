@@ -18,10 +18,16 @@ def ShowDetailView(request,pk):
     id = pk
     rating = show.rating
 
+    if pk == "100":
+        next_id = "1"
+    else:
+        next_id = str(int(pk) + 1)
+
     context = {
         'tvshow': show,
         'total': total,
         'id': id,
         'rating': rating,
+        'next_id': next_id,
     }
     return render(request, 'catalog/detail.html', context)

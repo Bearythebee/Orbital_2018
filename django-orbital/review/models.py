@@ -5,6 +5,7 @@ from django.urls import reverse #Used to generate URLs by reversing the URL patt
 
 class ShowList(models.Model):
     name = models.CharField(max_length=200)
+    rating = models.DecimalField(max_digits=11,decimal_places=1,null=True,blank=0.0)
 
     def __str__(self):
         return self.name

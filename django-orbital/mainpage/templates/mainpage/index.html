@@ -1,0 +1,258 @@
+{% extends 'mainpage/baselayout.html' %}
+{% load static %}
+
+{% block loadtemplate %}
+    <link href="{% static 'baselayout/mainpage.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+	<!--==========================
+	Intro Section
+	============================-->
+	<section id="intro">
+		<div class="intro-container">
+			<img id="intro-bg" src="{% static 'img/arrow.jpg' %}" alt="arrow.jpg">
+			<div class="intro-content">
+				<h2>Don't know what to watch? Fret Not!</h2>
+				<p>This website contains over 10000 different shows of different genres. You will never complain about having no shows to watch ever again!</p>
+				<a href="#guide" class="btn-get-started scrollto">Click here to get Started</a>
+			</div>
+		</div>
+	</section><!-- #intro -->
+
+	<main id="main">
+
+	<!--==========================
+	Step-by-step Guide Section
+	============================-->
+	<section id="guide">
+		<div class="container">
+			<div class="row">
+
+			<div class="col-lg-4 box">
+				<i class="ion-ios-bookmarks-outline"></i>
+				<h4 class="title"><a href="">Step 1</a></h4>
+				<p class="description">Choose a genre</p>
+			</div>
+
+			<div class="col-lg-4 box box-bg">
+				<i class="ion-ios-stopwatch-outline"></i>
+				<h4 class="title"><a href="">Step 2</a></h4>
+				<p class="description">Choose from various recommended movies</p>
+			</div>
+
+			<div class="col-lg-4 box">
+				<i class="ion-ios-heart-outline"></i>
+				<h4 class="title"><a href="">Step 3</a></h4>
+				<p class="description">Read the summary and various reviews</p>
+			</div>
+
+			<div class="col-lg-4 box box-bg">
+				<i class="ion-ios-stopwatch-outline"></i>
+				<h4 class="title"><a href="">Step 4</a></h4>
+				<p class="description">Decide whether to watch it</p>
+			</div>
+
+			<div class="col-lg-4 box">
+				<i class="ion-ios-heart-outline"></i>
+				<h4 class="title"><a href="">Step 5</a></h4>
+				<p class="description">If yes, popular websites will be provided</p>
+			</div>
+
+			<div class="col-lg-4 box box-bg">
+				<i class="ion-ios-stopwatch-outline"></i>
+				<h4 class="title"><a href="">Step 6</a></h4>
+				<p class="description">Remember to leave a review as well !</p>
+			</div>
+
+			</div>
+		</div>
+	</section><!-- #guide -->
+
+    <!--==========================
+      Genre Section
+    ============================-->
+	<section id="genre">
+		<div class="container">
+
+			<header class="section-header">
+				<h3>Genre</h3>
+				<p>Choose one to get started</p>
+			</header>
+
+			<div class="row genre-cols">
+
+				<div class="col-md-4 wow fadeInUp">
+					<div class="genre-col">
+						<div class="img">
+							<a href="#actionModal"><img id="action-img" src="{% static 'img/the-flash.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('actionModal').style.display='block'"></a>
+						</div>
+						<h2 class="title" onclick="document.getElementById('actionModal').style.display='block'"><a href="#actionModal">Action</a></h2>
+                    </div>
+					
+					<div id="actionModal" class="modal-genre">
+						<div class="modal-genre-content">
+							<div class="modal-genre-body">
+								<ul>
+									{% for show in action %}
+									<li>
+										<img src="{% static show.display %}" style="height:200px; width:135px">
+										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+                                        <h4>{{ show.rating }} / 10</h4>
+										<p>{{show.summary}}</p>
+									</li>
+									<hr>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 wow fadeInUp">
+					<div class="genre-col">
+						<div class="img">
+							<a href="#romanceModal"><img id="romance-img" src="{% static 'img/GG.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('romanceModal').style.display='block'"></a>
+						</div>
+						<h2 class="title" onclick="document.getElementById('romanceModal').style.display='block'"><a href="#romanceModal">Romance</a></h2>
+					</div>
+
+					<div id="romanceModal" class="modal-genre">
+						<div class="modal-genre-content">
+							<div class="modal-genre-body">
+								<ul>
+									{% for show in romance %}
+									<li>
+										<img src="{% static show.display %}" style="height:200px; width:135px">
+										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+                                        <h4>{{ show.rating }} / 10</h4>
+                                        <p>{{show.summary}}</p>
+									</li>
+									<hr>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 wow fadeInUp">
+					<div class="genre-col">
+						<div class="img">
+							<a href="#comedyModal"><img id="comedy-img" src="{% static 'img/Friends.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('comedyModal').style.display='block'"></a>
+						</div>
+						<h2 class="title" onclick="document.getElementById('comedyModal').style.display='block'"><a href="#comedyModal">Comedy</a></h2>
+					</div>
+
+					<div id="comedyModal" class="modal-genre">
+						<div class="modal-genre-content">
+							<div class="modal-genre-body">
+								<ul>
+									{% for show in comedy %}
+									<li>
+										<img src="{% static show.display %}" style="height:200px; width:135px">
+										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+										<h4>{{ show.rating }} / 10</h4>
+                                        <p>{{show.summary}}</p>
+									</li>
+									<hr>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-4 wow fadeInUp">
+					<div class="genre-col">
+						<div class="img">
+							<a href="#crimeModal"><img id="mystery-img" src="{% static 'img/CM.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('crimeModal').style.display='block'"></a>
+						</div>
+						<h2 class="title" onclick="document.getElementById('crimeModal').style.display='block'"><a href="#crimeModal">Crime</a></h2>
+					</div>
+
+					<div id="crimeModal" class="modal-genre">
+						<div class="modal-genre-content">
+							<div class="modal-genre-body">
+								<ul>
+									{% for show in crime %}
+									<li>
+										<img src="{% static show.display %}" style="height:200px; width:135px">
+										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+										<h4>{{ show.rating }} / 10</h4>
+                                        <p>{{show.summary}}</p>
+									</li>
+									<hr>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-4 wow fadeInUp">
+					<div class="genre-col">
+						<div class="img">
+							<a href="#thrillerModal"><img id="horror-img" src="{% static 'img/TWD.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('thrillerModal').style.display='block'"></a>
+						</div>
+						<h2 class="title" onclick="document.getElementById('thrillerModal').style.display='block'"><a href="#thrillerModal">Thriller</a></h2>
+					</div>
+
+					<div id="thrillerModal" class="modal-genre">
+						<div class="modal-genre-content">
+							<div class="modal-genre-body">
+								<ul>
+									{% for show in thriller %}
+									<li>
+										<img src="{% static show.display %}" style="height:200px; width:135px">
+										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+										<h4>{{ show.rating }} / 10</h4>
+                                        <p>{{show.summary}}</p>
+									</li>
+									<hr>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-4 wow fadeInUp">
+					<div class="genre-col">
+						<div class="img">
+							<a href="#realityModal"><img id="reality-img" src="{% static 'img/masterchef.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('realityModal').style.display='block'"></a>
+						</div>
+						<h2 class="title" onclick="document.getElementById('realityModal').style.display='block'"><a href="#realityModal">Reality</a></h2>
+					</div>
+
+					<div id="realityModal" class="modal-genre">
+						<div class="modal-genre-content">
+							<div class="modal-genre-body">
+								<ul>
+									{% for show in thriller %}
+									<li>
+										<img src="{% static show.display %}" style="height:200px; width:135px">
+										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+										<h4>{{ show.rating }} / 10</h4>
+                                        <p>{{show.summary}}</p>
+									</li>
+									<hr>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</section><!-- #genre -->
+
+	</main>
+{% endblock %}
+
+	

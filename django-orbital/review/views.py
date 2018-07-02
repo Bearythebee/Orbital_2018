@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 def index(request, pk):
     show = ShowList.objects.get(id=pk)
     show_name = show.name
+    show_rating = show.rating
 
     review_list = ShowReview.objects.filter(name=show_name)
     if review_list.count() == 0:
@@ -25,12 +26,14 @@ def index(request, pk):
         ReviewObj.username = username
         ReviewObj.review = review
         ReviewObj.save()
+        return HttpResponseRedirect('../review/')
 
     context ={
         'id': pk,
         'show_name': show_name,
         'reviews': review_list,
         'form': form,
+        'show_rating': show_rating,
     }
 
     return render(request, 'review/review.html', context)

@@ -1,0 +1,60 @@
+{% extends 'review/secondlayout.html' %}
+{% load static %}
+
+{% block loadtemplate %}
+    <link href="{% static 'review/review.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <div class="container" id="synopsis">
+        <div class="row">
+            <div class="col-lg-3">
+                <h1 class="my-4">{{show_name}}</h1>
+                <h4 style="color:black">IMDb Rating: {{ show_rating }} / 10</h4>
+                <nav class="nav flex-column nav-pills nav-tabs">
+                    <a class="nav-link" href=".." style="color:black">Synopsis</a>
+                    <a class="nav-link active" href="#">Review</a>
+                </nav>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="card mt-4" id="main-card">
+                    {% if reviews == None %}
+                        <h1>No reviews yet!</h1>
+                    {% else %}
+                        {% for i in reviews %}
+                            <div class="list-group-item">
+                                <div class="col-md-12" style="margin-top:15px">
+                                    <h4 class="list-group-item-heading"><strong>{{i.username}}</strong></h4>
+                                    <p class="list-group-item-text">{{i.review}}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="card card-outline-secondary my-4">
+                    <div class="card-header">
+                        <h3 style="margin:0px">Leave a review!</h3>
+                    </div>
+                    <div class="container card-body">
+                        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                            {{ form.review }}
+
+                            <button type="submit" class="btn btn-primary">Add review</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
