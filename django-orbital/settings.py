@@ -12,7 +12,7 @@ SECRET_KEY = 'k=a5%8ht9%p#^q6k6(0+$dyrz4c-x7o6_yzw!@ujk+f@6kv*&c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['demo-orbital.herokuapp.com']
+ALLOWED_HOSTS = ['demo-orbital.herokuapp.com','localhost']
 
 
 # Application definition
@@ -70,10 +70,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django-db',
-        'USER':'md-afif',
-		'PASSWORD': 'afifaf1F.',
-		'HOST': 'localhost',
-    }
+        'USER':'root'
+        }
 }
 
 
