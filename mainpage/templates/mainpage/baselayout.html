@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +22,9 @@
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
+	<!-- Animate.CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">	
+	
 	<!-- Bootstrap CSS File -->
 	<link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -32,8 +36,7 @@
 	<link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
 
 	<!-- Main Stylesheet File -->
-	<link href="{% static 'baselayout/style.css' %}" rel="stylesheet">
-	{% block loadtemplate %}{% endblock %}
+	<link href="{% static 'mainpage/style.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -45,7 +48,7 @@
 		<div class="container-fluid">
 
 			<div id="logo" class="pull-left">
-				<h3><a href="../../" class="scrollto">Couch Potatoes</a></h3>
+				<h3><a href="../../mainpage/" class="scrollto">Couch Potatoes</a></h3>
 			</div>
 
 			{% if user.is_authenticated %}
@@ -75,8 +78,7 @@
 			</nav>
 
 			{% endif %}
-			
-			</div>
+
 		</div>
 	</header><!-- #header -->
 
@@ -124,51 +126,7 @@
 	<script src="{% static 'lib/touchSwipe/jquery.touchSwipe.min.js' %}"></script>
 
 	<!-- Template Main Javascript File -->
-	<script src="{% static 'js/main.js' %}"></script>
-
-	<!-- Script to close log in and sign up page by clicking outside box -->
-	<script>
-		// Script to close log in and sign up page by clicking outside box
-
-		// Get the modal
-		var modalLogIn = document.getElementById('loginModal');
-		var modalSignUp = document.getElementById('signupModal');
-		var modalAction = document.getElementById('actionModal');
-		var modalRomance = document.getElementById('romanceModal');
-		var modalComedy = document.getElementById('comedyModal');
-		var modalCrime = document.getElementById('crimeModal');
-		var modalThriller = document.getElementById('thrillerModal');
-		var modalReality = document.getElementById('realityModal');
-
-
-
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modalLogIn) {
-				modalLogIn.style.display = "none";
-			} else if (event.target == modalSignUp) {
-				modalSignUp.style.display = "none";
-			} else if (event.target == modalAction) {
-				modalAction.style.display = "none";
-			} else if (event.target == modalRomance) {
-				modalRomance.style.display = "none";
-			} else if (event.target == modalComedy) {
-				modalComedy.style.display = "none";
-			} else if (event.target == modalCrime) {
-				modalCrime.style.display = "none";
-			} else if (event.target == modalThriller) {
-				modalThriller.style.display = "none";
-			} else if (event.target == modalReality) {
-				modalReality.style.display = "none";
-			}
-		}
-		// end script
-
-	</script>
-
-{% block loadscript %}
-    {% endblock %}
+	<script src="{% static 'mainpage/mainscript.js' %}"></script>
 
 </body>
 </html>

@@ -1,10 +1,6 @@
 {% extends 'mainpage/baselayout.html' %}
 {% load static %}
 
-{% block loadtemplate %}
-    <link href="{% static 'baselayout/mainpage.css' %}" rel="stylesheet">
-{% endblock %}
-
 {% block content %}
 	<!--==========================
 	Intro Section
@@ -30,37 +26,37 @@
 			<div class="row">
 
 			<div class="col-lg-4 box">
-				<i class="ion-ios-bookmarks-outline"></i>
+				<i class="material-icons">thumb_up_alt</i>
 				<h4 class="title"><a href="">Step 1</a></h4>
 				<p class="description">Choose a genre</p>
 			</div>
 
 			<div class="col-lg-4 box box-bg">
-				<i class="ion-ios-stopwatch-outline"></i>
+				<i class="material-icons">list</i>
 				<h4 class="title"><a href="">Step 2</a></h4>
 				<p class="description">Choose from various recommended movies</p>
 			</div>
 
 			<div class="col-lg-4 box">
-				<i class="ion-ios-heart-outline"></i>
+				<i class="material-icons">visibility</i>
 				<h4 class="title"><a href="">Step 3</a></h4>
 				<p class="description">Read the summary and various reviews</p>
 			</div>
 
 			<div class="col-lg-4 box box-bg">
-				<i class="ion-ios-stopwatch-outline"></i>
+				<i class="material-icons">sentiment_satisfied_alt</i>
 				<h4 class="title"><a href="">Step 4</a></h4>
 				<p class="description">Decide whether to watch it</p>
 			</div>
 
 			<div class="col-lg-4 box">
-				<i class="ion-ios-heart-outline"></i>
+				<i class="material-icons">play_circle_filled_white</i>
 				<h4 class="title"><a href="">Step 5</a></h4>
 				<p class="description">If yes, popular websites will be provided</p>
 			</div>
 
 			<div class="col-lg-4 box box-bg">
-				<i class="ion-ios-stopwatch-outline"></i>
+				<i class="material-icons">add_comment</i>
 				<h4 class="title"><a href="">Step 6</a></h4>
 				<p class="description">Remember to leave a review as well !</p>
 			</div>
@@ -85,20 +81,29 @@
 				<div class="col-md-4 wow fadeInUp">
 					<div class="genre-col">
 						<div class="img">
-							<a href="#actionModal"><img id="action-img" src="{% static 'img/the-flash.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('actionModal').style.display='block'"></a>
+							<a href="#actionModal" data-toggle="modal" data-target="#actionModal"><img id="action-img" src="{% static 'img/the-flash.jpg' %}" alt="action.jpg" class="img-fluid"></a>
 						</div>
-						<h2 class="title" onclick="document.getElementById('actionModal').style.display='block'"><a href="#actionModal">Action</a></h2>
-                    </div>
-					
-					<div id="actionModal" class="modal-genre">
-						<div class="modal-genre-content">
-							<div class="modal-genre-body">
+						<h2><a href="#actionModal" data-toggle="modal" data-target="#actionModal">Action</a></h2>
+					</div>
+				</div>
+				
+				<div class="modal fade" id="actionModal" tabindex="-1" role="dialog" aria-labelledby="actionModalTitle" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2 class="modal-title" id="actionModalTitle">Action</h2>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							
+							<div class="modal-body genre-body">
 								<ul>
 									{% for show in action %}
 									<li>
-										<img src="{% static show.display %}" style="height:200px; width:135px">
-										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
-                                        <h4>{{ show.rating }} / 10</h4>
+										<img src="{% static show.display %}">
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
+										<h4>{{ show.rating }} / 10</h4>
 										<p>{{show.summary}}</p>
 									</li>
 									<hr>
@@ -112,21 +117,30 @@
 				<div class="col-md-4 wow fadeInUp">
 					<div class="genre-col">
 						<div class="img">
-							<a href="#romanceModal"><img id="romance-img" src="{% static 'img/GG.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('romanceModal').style.display='block'"></a>
+							<a href="#romanceModal" data-toggle="modal" data-target="#romanceModal"><img id="romance-img" src="{% static 'img/GG.jpg' %}" alt="romance.jpg" class="img-fluid"></a>
 						</div>
-						<h2 class="title" onclick="document.getElementById('romanceModal').style.display='block'"><a href="#romanceModal">Romance</a></h2>
+						<h2><a href="#romanceModal" data-toggle="modal" data-target="#romanceModal">Romance</a></h2>
 					</div>
-
-					<div id="romanceModal" class="modal-genre">
-						<div class="modal-genre-content">
-							<div class="modal-genre-body">
+				</div>
+				
+				<div class="modal fade" id="romanceModal" tabindex="-1" role="dialog" aria-labelledby="romanceModalTitle" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2 class="modal-title" id="romanceModalTitle">Romance</h2>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							
+							<div class="modal-body genre-body">
 								<ul>
 									{% for show in romance %}
 									<li>
-										<img src="{% static show.display %}" style="height:200px; width:135px">
-										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
-                                        <h4>{{ show.rating }} / 10</h4>
-                                        <p>{{show.summary}}</p>
+										<img src="{% static show.display %}">
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
+										<h4>{{ show.rating }} / 10</h4>
+										<p>{{show.summary}}</p>
 									</li>
 									<hr>
 									{% endfor %}
@@ -139,21 +153,30 @@
 				<div class="col-md-4 wow fadeInUp">
 					<div class="genre-col">
 						<div class="img">
-							<a href="#comedyModal"><img id="comedy-img" src="{% static 'img/Friends.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('comedyModal').style.display='block'"></a>
+							<a href="#comedyModal" data-toggle="modal" data-target="#comedyModal"><img id="comedy-img" src="{% static 'img/Friends.jpg' %}" alt="comedy.jpg" class="img-fluid"></a>
 						</div>
-						<h2 class="title" onclick="document.getElementById('comedyModal').style.display='block'"><a href="#comedyModal">Comedy</a></h2>
+						<h2><a href="#comedyModal" data-toggle="modal" data-target="#comedyModal">Comedy</a></h2>
 					</div>
-
-					<div id="comedyModal" class="modal-genre">
-						<div class="modal-genre-content">
-							<div class="modal-genre-body">
+				</div>
+				
+				<div class="modal fade" id="comedyModal" tabindex="-1" role="dialog" aria-labelledby="comedyModalTitle" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2 class="modal-title" id="comedyModalTitle">Comedy</h2>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							
+							<div class="modal-body genre-body">
 								<ul>
 									{% for show in comedy %}
 									<li>
-										<img src="{% static show.display %}" style="height:200px; width:135px">
-										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+										<img src="{% static show.display %}">
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
 										<h4>{{ show.rating }} / 10</h4>
-                                        <p>{{show.summary}}</p>
+										<p>{{show.summary}}</p>
 									</li>
 									<hr>
 									{% endfor %}
@@ -161,27 +184,35 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 
 				<div class="col-md-4 wow fadeInUp">
 					<div class="genre-col">
 						<div class="img">
-							<a href="#crimeModal"><img id="mystery-img" src="{% static 'img/CM.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('crimeModal').style.display='block'"></a>
+							<a href="#crimeModal" data-toggle="modal" data-target="#crimeModal"><img id="mystery-img" src="{% static 'img/CM.jpg' %}" alt="crime.jpg" class="img-fluid"></a>
 						</div>
-						<h2 class="title" onclick="document.getElementById('crimeModal').style.display='block'"><a href="#crimeModal">Crime</a></h2>
+						<h2><a href="#crimeModal" data-toggle="modal" data-target="#crimeModal">Crime</a></h2>
 					</div>
-
-					<div id="crimeModal" class="modal-genre">
-						<div class="modal-genre-content">
-							<div class="modal-genre-body">
+				</div>
+				
+				<div class="modal fade" id="crimeModal" tabindex="-1" role="dialog" aria-labelledby="crimeModalTitle" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2 class="modal-title" id="crimeModalTitle">Crime</h2>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							
+							<div class="modal-body genre-body">
 								<ul>
 									{% for show in crime %}
 									<li>
-										<img src="{% static show.display %}" style="height:200px; width:135px">
-										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+										<img src="{% static show.display %}">
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
 										<h4>{{ show.rating }} / 10</h4>
-                                        <p>{{show.summary}}</p>
+										<p>{{show.summary}}</p>
 									</li>
 									<hr>
 									{% endfor %}
@@ -189,27 +220,35 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 
 				<div class="col-md-4 wow fadeInUp">
 					<div class="genre-col">
 						<div class="img">
-							<a href="#thrillerModal"><img id="horror-img" src="{% static 'img/TWD.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('thrillerModal').style.display='block'"></a>
+							<a href="#thrillerModal" data-toggle="modal" data-target="#thrillerModal"><img id="horror-img" src="{% static 'img/TWD.jpg' %}" alt="thriller.jpg" class="img-fluid"></a>
 						</div>
-						<h2 class="title" onclick="document.getElementById('thrillerModal').style.display='block'"><a href="#thrillerModal">Thriller</a></h2>
+						<h2><a href="#thrillerModal" data-toggle="modal" data-target="#thrillerModal">Thriller</a></h2>
 					</div>
-
-					<div id="thrillerModal" class="modal-genre">
-						<div class="modal-genre-content">
-							<div class="modal-genre-body">
+				</div>
+				
+				<div class="modal fade" id="thrillerModal" tabindex="-1" role="dialog" aria-labelledby="thrillerModalTitle" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2 class="modal-title" id="thrillerModalTitle">Thriller</h2>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							
+							<div class="modal-body genre-body">
 								<ul>
 									{% for show in thriller %}
 									<li>
-										<img src="{% static show.display %}" style="height:200px; width:135px">
-										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+										<img src="{% static show.display %}">
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
 										<h4>{{ show.rating }} / 10</h4>
-                                        <p>{{show.summary}}</p>
+										<p>{{show.summary}}</p>
 									</li>
 									<hr>
 									{% endfor %}
@@ -217,27 +256,35 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 
 				<div class="col-md-4 wow fadeInUp">
 					<div class="genre-col">
 						<div class="img">
-							<a href="#realityModal"><img id="reality-img" src="{% static 'img/masterchef.jpg' %}" alt="" class="img-fluid" onclick="document.getElementById('realityModal').style.display='block'"></a>
+							<a href="#realityModal" data-toggle="modal" data-target="#realityModal"><img id="reality-img" src="{% static 'img/masterchef.jpg' %}" alt="reality.jpg" class="img-fluid"></a>
 						</div>
-						<h2 class="title" onclick="document.getElementById('realityModal').style.display='block'"><a href="#realityModal">Reality</a></h2>
+						<h2><a href="#realityModal" data-toggle="modal" data-target="#realityModal">Reality</a></h2>
 					</div>
-
-					<div id="realityModal" class="modal-genre">
-						<div class="modal-genre-content">
-							<div class="modal-genre-body">
+				</div>
+				
+				<div class="modal fade" id="realityModal" tabindex="-1" role="dialog" aria-labelledby="realityModalTitle" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h2 class="modal-title" id="realityModalTitle">Reality</h2>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							
+							<div class="modal-body genre-body">
 								<ul>
-									{% for show in thriller %}
+									{% for show in reality %}
 									<li>
-										<img src="{% static show.display %}" style="height:200px; width:135px">
-										<h3><a style="color:black" href="{{ show.get_absolute_url }}"</a>{{show.name}}</h3>
+										<img src="{% static show.display %}">
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
 										<h4>{{ show.rating }} / 10</h4>
-                                        <p>{{show.summary}}</p>
+										<p>{{show.summary}}</p>
 									</li>
 									<hr>
 									{% endfor %}
@@ -245,7 +292,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 
 			</div>
