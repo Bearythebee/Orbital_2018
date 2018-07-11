@@ -84,11 +84,10 @@ AUTHENTICATION_BACKENDS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'heroku_752d0f772a7a137',
-        'USER':'b0c09cbd38efcc',
-        'PASSWORD': 'password:862c8483',
+        'NAME':'heroku_da514d3234fd4cd',
+        'USER':'633e24d2566dc',
+        'PASSWORD': '9b9050b5',
         'HOST': 'us-cdbr-iron-east-04.cleardb.net',
-        'USER':'root',
         }
 }
 
