@@ -45,4 +45,4 @@ def logout_view(request):
 
 def redirect_home(request):
 	user = request.user
-	return redirect('https://moviesforcouchpotatoes.herokuapp.com/')
+	return redirect('mainpage:index')
