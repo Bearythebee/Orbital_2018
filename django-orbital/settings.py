@@ -14,6 +14,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['demo-orbital.herokuapp.com','localhost']
 
+SOCIAL_AUTH_FACEBOOK_KEY = '220547168565800' 
+SOCIAL_AUTH_FACEBOOK_SECRET = '41069edf046f06869b461964f527a0e7'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '271148302846-hk211969c6unt4kvilo30oaa8v60r6st.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='nrteIAaSwQVakV9zBCYQAuV7' 
+
 
 # Application definition
 
@@ -28,6 +33,7 @@ INSTALLED_APPS = [
     'accounts',
     'catalog',
     'review',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 	'whitenoise.middleware.WhiteNoiseMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 
 ]
 
@@ -55,12 +62,20 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect', 
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'django-orbital.wsgi.application'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 # Database
@@ -69,8 +84,11 @@ WSGI_APPLICATION = 'django-orbital.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django-db',
-        'USER':'root'
+        'NAME':'heroku_752d0f772a7a137',
+        'USER':'b0c09cbd38efcc',
+        'PASSWORD': 'password:862c8483',
+        'HOST': 'us-cdbr-iron-east-04.cleardb.net',
+        'USER':'root',
         }
 }
 
