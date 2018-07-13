@@ -11,8 +11,8 @@ class Show(models.Model):
     role = models.TextField()
     synopsis = models.TextField()
     video = models.TextField()
-    rating = models.DecimalField(max_digits=11,decimal_places=1,null=True,blank=0.0)
     site = models.CharField(max_length=200,null=True,blank="Sorry, no sites to watch from yet!")
+    rating = models.DecimalField(max_digits=11,decimal_places=1,null=True,blank=0.0)
 
     def __str__(self):
         """
