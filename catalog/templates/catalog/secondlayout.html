@@ -38,8 +38,30 @@
 </head>
 
 <body>
+	<!--Facebook javascript SDK to run faceboook Analytics -->
+	<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '{220547168565800}',
+	      cookie     : true,
+	      xfbml      : true,
+	      version    : '{v3.0}'
+	    });
+	      
+	    FB.AppEvents.logPageView();   
+	      
+	  };
 
-		<!--==========================
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "https://connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<!--==========================
 	Header
 	============================-->
 	<header id="header">
@@ -70,6 +92,7 @@
 
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
+					<li><input id="btnlogin" type="button" onclick="fbLogin()" value="Login with Facebook" /></li>>
 					<li><a href="/accounts/login">Login</a></li>
 					<li><a href="/accounts/signup">Sign up</a></li>
 				</ul>
@@ -123,6 +146,7 @@
 
 	<!-- Template Main Javascript File -->
 	<script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'js/fb.js' %}"></script>
 
 	<!-- Script to close log in and sign up page by clicking outside box -->
 	<script>
