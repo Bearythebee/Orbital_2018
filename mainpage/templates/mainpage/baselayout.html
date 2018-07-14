@@ -37,31 +37,12 @@
 
 	<!-- Main Stylesheet File -->
 	<link href="{% static 'mainpage/style.css' %}" rel="stylesheet">
+
+	<script src="//platform-api.sharethis.com/js/sharethis.js#property=5b499d9377b64600122411ae&product=sticky-share-buttons"></script>
 </head>
 
 <body>
-	<!--Facebook javascript SDK to run faceboook Analytics -->
-	<script>
-	  window.fbAsyncInit = function() {
-	    FB.init({
-	      appId      : '{220547168565800}',
-	      cookie     : true,
-	      xfbml      : true,
-	      version    : '{v3.0}'
-	    });
-	      
-	    FB.AppEvents.logPageView();   
-	      
-	  };
-
-	  (function(d, s, id){
-	     var js, fjs = d.getElementsByTagName(s)[0];
-	     if (d.getElementById(id)) {return;}
-	     js = d.createElement(s); js.id = id;
-	     js.src = "https://connect.facebook.net/en_US/sdk.js";
-	     fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
-	</script>
+	
 
 	<!--==========================
 	Header
