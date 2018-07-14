@@ -240,4 +240,3 @@ jQuery(document).ready(function( $ ) {
 	}
   
 });
-

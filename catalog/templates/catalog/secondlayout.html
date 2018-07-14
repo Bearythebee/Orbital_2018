@@ -38,29 +38,6 @@
 </head>
 
 <body>
-	<!--Facebook javascript SDK to run faceboook Analytics -->
-	<script>
-	  window.fbAsyncInit = function() {
-	    FB.init({
-	      appId      : '{220547168565800}',
-	      cookie     : true,
-	      xfbml      : true,
-	      version    : '{v3.0}'
-	    });
-	      
-	    FB.AppEvents.logPageView();   
-	      
-	  };
-
-	  (function(d, s, id){
-	     var js, fjs = d.getElementsByTagName(s)[0];
-	     if (d.getElementById(id)) {return;}
-	     js = d.createElement(s); js.id = id;
-	     js.src = "https://connect.facebook.net/en_US/sdk.js";
-	     fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
-	</script>
-
 	<!--==========================
 	Header
 	============================-->
@@ -146,7 +123,6 @@
 
 	<!-- Template Main Javascript File -->
 	<script src="{% static 'js/main.js' %}"></script>
-	<script src="{% static 'js/fb.js' %}"></script>
 
 	<!-- Script to close log in and sign up page by clicking outside box -->
 	<script>
@@ -178,6 +154,72 @@
 		// end script
 
 	</script>
+
+	<script type="text/javascript" language="javascript">
+ 
+        //Not Jquery !!! just a helper function to return an object
+        function $(i_obj) {
+            return document.getElementById(i_obj);
+        }
+ 
+        window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '{220547168565800}',
+	      cookie     : true,
+	      xfbml      : true,
+	      version    : '{v3.0}'
+	    });
+ 
+ 
+        function fbLogin() {
+            FB.login(function (response) {
+                if (response.status == "connected") {
+                    //User has logged in, hide the login button and show the launch button
+ 
+                    $("btnlogin").className = "Hide";
+                    $("btnlauncher").className = "Show";
+ 
+                } else {
+                    // user has not yet logged in, hide launcher button and display login button
+ 
+                    $("btnlogin").className = "Show";
+                    $("btnlauncher").className = "Hide";
+                }
+            });
+        }
+ 
+        //Function displays the Feed Dialog
+        function LaunchFeedDialog() {
+         
+        //Create an object with the below properties.
+            var obj = {
+                method: 'feed',
+                link: 'www.msguy.com',
+                picture: 'http://fbrell.com/f8.jpg',
+                name: 'A Title for Feed Dialog',
+                caption: 'Some Caption for the URL',
+                description: 'A description for the URL which is to be displayed'
+            };
+ 
+            //Calling the Facebook API : Important
+            FB.ui(obj, callback);
+        }
+ 
+        function callback(response) {
+            //Do anything you want here :)
+            //document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+            //alert(response['post_id']); Some diagnostics lol :)
+        }
+ 
+        // Load the SDK Asynchronously. This is a very important part. It loads the Facebook javascript SDK automatically.
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        } (document));
+    </script>
 
     {% block loadscript %}
     {% endblock %}
