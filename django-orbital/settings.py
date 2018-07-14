@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'catalog',
     'review',
     'social_django',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
