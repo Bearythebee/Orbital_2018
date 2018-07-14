@@ -8,12 +8,10 @@
 	<meta content="" name="keywords">
 	<meta content="" name="description">
 	<!-- Facebook sharing meta tags-->
-	<meta property="og:title"         content="{{tvshow.name}}"/>
-	<meta property="og:url"           content="{{ request.build_absolute_uri }}" />
+	<meta property="og:title"         content="{tvshow.name}"/>
+	<meta property="og:url"           content="{ request.build_absolute_uri }" />
 	<meta property="og:site_name" content="MoviesforCouchPotatoes"/>
-	<meta property="og:description"   content="{{tvshow.synopsis}}" />
-
-	<script src="//platform-api.sharethis.com/js/sharethis.js#property=5b499d9377b64600122411ae&product=sticky-share-buttons"></script>
+	<meta property="og:description"   content="{tvshow.synopsis}" />
 
 	<!-- Favicons -->
 	<link href="{% static 'img/potato.png" rel="icon' %}">
