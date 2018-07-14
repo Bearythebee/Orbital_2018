@@ -9,6 +9,9 @@
 	<meta content="" name="description">
 	<!-- Facebook sharing meta tags-->
 	<meta property="og:url"           content="{{ request.build_absolute_uri }}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="{{tvshow.name}}"/>
+	<meta property="og:description"   content="{{tvshow.synopsis}}" />
 
 	<!-- Favicons -->
 	<link href="{% static 'img/potato.png" rel="icon' %}">
