@@ -17,6 +17,7 @@ def ShowDetailView(request,pk):
     total = zip(ctr, fullcast, roles)
     id = pk
     rating = show.rating
+    pic = show.display
 
     if pk == "100":
         next_id = "1"
@@ -29,5 +30,6 @@ def ShowDetailView(request,pk):
         'id': id,
         'rating': rating,
         'next_id': next_id,
+        'picture': pic,
     }
     return render(request, 'catalog/detail.html', context)
