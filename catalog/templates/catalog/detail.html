@@ -30,7 +30,7 @@
           <div class="col-lg-9">
 
             <div class="card mt-4">
-			  <iframe width="823px" height="450" src="{{tvshow.video}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe width="823px" height="450" src="{{tvshow.video}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               <div class="card-body">
                 <h3 class="card-title">Description</h3>
                 <p class="card-text">{{tvshow.synopsis}}</p>
@@ -51,13 +51,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                {% for x, y, z in total %}
-                  <tr>
-                    <th scope="row">{{x}}</th>
-                    <td>{{y}}</td>
-                    <td>{{z}}</td>
-                  </tr>
-                {% endfor %}
+                  {% if tvshow.genre != 'Reality' %}
+                    {% for x, y, z in total %}
+                      <tr>
+                        <th scope="row">{{x}}</th>
+                        <td>{{y}}</td>
+                        <td>{{z}}</td>
+                      </tr>
+                    {% endfor %}
+                  {% else %}
+                    {% for a, b in total %}
+                      <tr>
+                        <th scope="row">{{a}}</th>
+                        <td>{{b}}</td>
+                        <td>-</td>
+                      </tr>
+                    {% endfor %}
+                  {% endif %}
                 </tbody>
               </table>
 
