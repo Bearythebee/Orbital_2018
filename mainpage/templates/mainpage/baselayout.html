@@ -55,7 +55,7 @@
 			{% if user.is_authenticated %}
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
-					<li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, {{ user.username }}</strong></li>
+                    <li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, <a href="/profiles">{{ user.get_full_name }}</a></strong></li>
 					<li>
 						<form class="logout-link"action="/accounts/logout/" method="post">
 							{% csrf_token %}

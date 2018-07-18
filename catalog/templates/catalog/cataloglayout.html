@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +8,11 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<meta content="" name="keywords">
 	<meta content="" name="description">
-	<!-- Facebook sharing meta tags-->
 	<meta property="og:title" content={{tvshow.name}}/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:site_name" content="MoviesforCouchPotatoes"/>
 	<meta property="og:description" content="{{tvshow.summary}}" />
 	<meta property="og:image" content="{{tvshow.picture}}">
-
-	<!-- Favicons -->
-	<link href="{% static 'img/potato.png" rel="icon' %}">
-	<link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
 	<!-- Google icons -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -30,15 +26,8 @@
 	<!-- Bootstrap CSS File -->
 	<link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-	<!-- Libraries CSS Files -->
-	<link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
-	<link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
-	<link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
-	<link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-	<link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
-
 	<!-- Main Stylesheet File -->
-    <link href="{% static 'catalog/mainstyle.css' %}" rel="stylesheet">
+    <link href="{% static 'catalog/catalogstyle.css' %}" rel="stylesheet">
 	{% block loadtemplate %}
 	{% endblock %}
 </head>
@@ -64,13 +53,13 @@
 		<div class="container-fluid">
 
 			<div id="logo" class="pull-left">
-				<h3><a href="../../../../" class="scrollto">Couch Potatoes</a></h3>
+				<h3><a href="../../../../mainpage/" class="scrollto">Couch Potatoes</a></h3>
 			</div>
 
 			{% if user.is_authenticated %}
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
-					<li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, {{ user.username }}</strong></li>
+                    <li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, <a href="/profiles">{{ user.get_full_name }}</a></strong></li>
 					<li>
 						<form class="logout-link"action="/accounts/logout/" method="post">
 							{% csrf_token %}
@@ -122,59 +111,11 @@
 		</div>
 	</footer><!-- #footer -->
 
-	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
 	<!-- JavaScript Libraries -->
 	<script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
 	<script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
 	<script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 	<script src="{% static 'lib/easing/easing.min.js' %}"></script>
-	<script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
-	<script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
-	<script src="{% static 'lib/wow/wow.min.js' %}"></script>
-	<script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
-	<script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
-	<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
-	<script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
-	<script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
-	<script src="{% static 'lib/touchSwipe/jquery.touchSwipe.min.js' %}"></script>
-
-	<!-- Template Main Javascript File -->
-	<script src="{% static 'js/main.js' %}"></script>
-
-	<!-- Script to close log in and sign up page by clicking outside box -->
-	<script>
-		// Script to close log in and sign up page by clicking outside box
-
-		// Get the modal
-		var modalAction = document.getElementById('actionModal');
-		var modalRomance = document.getElementById('romanceModal');
-		var modalComedy = document.getElementById('comedyModal');
-		var modalCrime = document.getElementById('crimeModal');
-		var modalThriller = document.getElementById('thrillerModal');
-
-
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modalAction) {
-				modalAction.style.display = "none";
-			} else if (event.target == modalRomance) {
-				modalRomance.style.display = "none";
-			} else if (event.target == modalComedy) {
-				modalComedy.style.display = "none";
-			} else if (event.target == modalCrime) {
-				modalCrime.style.display = "none";
-			} else if (event.target == modalThriller) {
-				modalThriller.style.display = "none";
-			}
-		}
-		// end script
-
-	</script>
-
-    {% block loadscript %}
-    {% endblock %}
 
 </body>
 </html>
