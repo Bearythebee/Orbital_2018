@@ -1,0 +1,84 @@
+{% extends 'profiles/profilelayout.html' %}
+{% load static %}
+
+{% block loadtemplate %}
+    <link href="{% static 'profiles/reviewprofile.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-3 profile-sidebar">
+            <div id="user-info">
+                <p id="user-fullname">{{ user.get_full_name }}</p>
+                <p id="user-username">@{{ user.username }}</p>
+
+                <button type="button" id="password-btn" class="btn btn-success" data-toggle="modal" data-target="#passwordModal">
+                    <i class="material-icons password-icon">settings</i>Change password
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Change Password</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                        <p>
+                                            {{ field.label_tag }}
+                                            {{ field }}
+                                            {% if field.errors %}
+                                                {% for error in field.errors %}
+                                                    <span style="color: red">{{ error }}</span>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </p>
+                                    {% endfor %}
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-menu">
+                <nav class="nav flex-column nav-pills nav-tabs">
+                    <a class="nav-link select-box" href="#"><i class="material-icons navbar-icon">rate_review</i>Reviews</a>
+                    <a class="nav-link" href="#"><i class="material-icons navbar-icon">favorite</i>Favourites</a>
+                </nav>
+            </div>
+
+        </div>
+
+        <div class="col-lg-9">
+            <h1>Here's all the reviews you've left so far!</h1>
+            <div class="card mt-4" id="main-card">
+                {% if reviews == None %}
+                    <h3>No reviews yet!</h3>
+                {% else %}
+                    {% for i in reviews %}
+                        <div class="list-group-item">
+                            <div class="col-md-12" style="margin-top:15px">
+                                <h4 class="list-group-item-heading"><strong>{{i.name}}</strong></h4>
+                                <p class="list-group-item-text">{{i.rating}} / 10</p>
+                                <p class="list-group-item-text">{{i.review}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
