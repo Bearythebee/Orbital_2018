@@ -1,10 +1,10 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login ,logout
+from django.contrib.auth import login, logout, authenticate
+from .forms import SignUpForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-
 
 # Create your views here.
 def signup_view(request):
@@ -12,8 +12,9 @@ def signup_view(request):
 	if request.method =='POST':
 		form = SignUpForm(request.POST)
 		if form.is_valid():
-			user = form.save() #from.save returns user to us
-			login(request,user,backend='django.contrib.auth.backends.ModelBackend')			
+			user = form.save()
+			login(request,user,backend='django.contrib.auth.backends.ModelBackend')
+			# login(request,user)			
 			return redirect('mainpage:index')
 	else:
 	# GET request
@@ -29,7 +30,8 @@ def login_view(request):
 			#log in the user
 			user = form.get_user() #retrieve user
 			login(request,user,backend='django.contrib.auth.backends.ModelBackend')
-			if 'next' in request.POST:                
+			# login(request,user)
+			if 'next' in request.POST:
 				return redirect(request.POST.get('next'))
 			else:
 				return redirect('mainpage:index')
@@ -42,7 +44,7 @@ def logout_view(request):
 	if request.method == 'POST':
 		logout(request)
 		return redirect('mainpage:index')
-
+		
 def redirect_home(request):
 	user = request.user
 	return redirect('mainpage:index')
