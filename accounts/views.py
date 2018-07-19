@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 def signup_view(request):
 	# POST request
 	if request.method =='POST':
-		form = UserCreationForm(request.POST)
+		form = SignUpForm(request.POST)
 		if form.is_valid():
 			user = form.save() #from.save returns user to us
 			login(request,user,backend='django.contrib.auth.backends.ModelBackend')			
