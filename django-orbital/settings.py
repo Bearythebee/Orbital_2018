@@ -12,7 +12,7 @@ SECRET_KEY = 'k=a5%8ht9%p#^q6k6(0+$dyrz4c-x7o6_yzw!@ujk+f@6kv*&c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://moviesforcouchpotatoes.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['*']
 
 SOCIAL_AUTH_FACEBOOK_KEY = '220547168565800' 
 SOCIAL_AUTH_FACEBOOK_SECRET = '41069edf046f06869b461964f527a0e7'
