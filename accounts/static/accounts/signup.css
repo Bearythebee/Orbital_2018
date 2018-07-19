@@ -1,0 +1,24 @@
+#signup-page {
+	padding: 50px 0;
+    text-align: center;
+}
+
+.center-justified {
+  text-align: justify;
+  margin: 0 auto;
+  width: 30em;
+}
+
+#signup-page .field-label {
+    font-size: 16px;
+    width: 215px;
+	margin-right:60px;
+	text-align:justify;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+#submitBtn {
+    margin-left: 397px;
+}
+
