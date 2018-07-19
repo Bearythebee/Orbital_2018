@@ -17,7 +17,7 @@ def signup_view(request):
 			return redirect('mainpage:index')
 	else:
 	# GET request
-		form = UserCreationForm()
+		form = SignUpForm()
 	return render(request,'accounts/signup.html',{'form':form})
 
 
