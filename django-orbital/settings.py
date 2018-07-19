@@ -19,7 +19,34 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '41069edf046f06869b461964f527a0e7'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '271148302846-hk211969c6unt4kvilo30oaa8v60r6st.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='nrteIAaSwQVakV9zBCYQAuV7' 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
 
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+     'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
 # Application definition
 
 INSTALLED_APPS = [
