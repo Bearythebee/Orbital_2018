@@ -8,10 +8,14 @@
 	<meta content="" name="keywords">
 	<meta content="" name="description">
 	<!-- Facebook sharing meta tags-->
-	<meta property="og:title" content="Review {{show_name}} by {{show}}"/>
+	<meta property="og:url" content="https://moviesforcouchpotatoes.herokuapp.com/catalog/show/{{id}}/">
+	<meta property="og:app_id" content="220547168565800">
+	<meta property="og:title" content="{{ tvshow.name }}"/>
 	<meta property="og:type" content="website"/>
-	<meta property="og:site_name" content="Reviews"/>
-	<meta property="og:description" content="{{tvshow.summary}}" />
+	<meta property="og:site_name" content="MoviesforCouchPotatoes"/>
+	<meta property="og:description" content="{{ tvshow.summary }}" />
+	<meta property="og:image" content="https://s3-us-west-1.amazonaws.com/orbital2018/{{ id }}.jpg">
+
 
 	<!-- Google icons -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -53,7 +57,7 @@
 			{% if user.is_authenticated %}
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
-					<li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, {{ user.username }}</strong></li>
+					<li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, <a href="/profiles">{{ user.get_full_name }}</a></strong></li>
 					<li>
 						<form class="logout-link"action="/accounts/logout/" method="post">
 							{% csrf_token %}
