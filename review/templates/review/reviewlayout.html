@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<title>Couch Potatoes</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="keywords">
+	<meta content="" name="description">
+
+	<!-- Google icons -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	<!--Font Awesome icons-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+	<!-- Bootstrap CSS File -->
+	<link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+	<!-- Main Stylesheet File -->
+    <link href="{% static 'review/reviewstyle.css' %}" rel="stylesheet">
+	{% block loadtemplate %}
+	{% endblock %}
+</head>
+
+<body>
+
+	<!--==========================
+	Header
+	============================-->
+	<header id="header">
+		<div class="container-fluid">
+
+			<div id="logo" class="pull-left">
+				<h3><a href="../../../../mainpage/" class="scrollto">Couch Potatoes</a></h3>
+			</div>
+
+			{% if user.is_authenticated %}
+			<nav id="nav-menu-container">
+				<ul class="nav-menu">
+                    <li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, <a href="/profiles">{{ user.get_full_name }}</a></strong></li>
+					<li>
+						<form class="logout-link"action="/accounts/logout/" method="post">
+							{% csrf_token %}
+							<button type="submit" class="btn" style=
+                                    "color:#fff;
+                                    background-color:transparent"><strong>Logout</strong></button>
+						</form>
+					</li>
+				</ul>
+			</nav>
+		    {% endif %}
+
+
+			{% if not user.is_authenticated %}
+
+			<nav id="nav-menu-container">
+				<ul class="nav-menu">
+					<li><a href="/accounts/login">Login</a></li>
+					<li><a href="/accounts/signup">Sign up</a></li>
+				</ul>
+			</nav>
+
+			{% endif %}
+			
+			</div>
+		</div>
+	</header><!-- #header -->
+
+	{% block content %}
+	{% endblock %}
+	
+	<!--==========================
+	Footer
+	============================-->
+	<footer id="footer">
+		<div class="container">
+			<div class="copyright">
+				&copy; Copyright <strong>BizPage</strong>. All Rights Reserved
+			</div>
+			<div class="credits">
+				<!--
+				All the links in the footer should remain intact.
+				You can delete the links only if you purchased the pro version.
+				Licensing information: https://bootstrapmade.com/license/
+				Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
+				-->
+				Best <a href="https://bootstrapmade.com/">Bootstrap Templates</a> by BootstrapMade
+			</div>
+		</div>
+	</footer><!-- #footer -->
+
+	<!-- JavaScript Libraries -->
+	<script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+	<script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+
+    {% block loadscript%}
+    {% endblock %}
+</body>
+</html>
