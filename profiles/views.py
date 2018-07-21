@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from review.models import ShowReview
-
+from mainpage.models import TVShow
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def reviews(request):
     owner_name = request.user.username
     review_list = ShowReview.objects.filter(username = owner_name)
@@ -33,8 +34,20 @@ def reviews(request):
     return render(request, 'profiles/reviews.html', context)
 
 
-def favourites(request):
-    context = {}
-    return render(request, 'profiles/fav.html', context)
+@login_required
+def bookmarks(request):
+    user = request.user
+    bookmarked = user.profile.bookmark
+    bookmark_list = bookmarked.split(", ")
+
+    show_list = []
+    for i in bookmark_list:
+        show_list.append(TVShow.objects.get(name=i))
+
+    context = {
+        'bookmarks': bookmark_list,
+        'show_list': show_list,
+    }
+    return render(request, 'profiles/bookmarks.html', context)
 
 
