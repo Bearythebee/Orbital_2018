@@ -13,7 +13,6 @@ class Show(models.Model):
     video = models.TextField()
     site = models.CharField(max_length=200,null=True,blank="Sorry, no sites to watch from yet!")
     rating = models.DecimalField(max_digits=11,decimal_places=1,null=True,blank=0.0)
-    display = models.TextField()
 
     def __str__(self):
         """
