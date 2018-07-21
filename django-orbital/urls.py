@@ -4,7 +4,7 @@ from django.urls import path, include
 
 
 urlpatterns = [
-	url(r'^$', include('mainpage.urls', namespace="mainpage")),
+	url(r'^', include('mainpage.urls', namespace="mainpage")),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/',include('accounts.urls')),
     url(r'^catalog/',include('catalog.urls')),
