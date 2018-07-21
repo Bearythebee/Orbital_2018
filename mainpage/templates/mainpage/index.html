@@ -102,13 +102,97 @@
 									{% for show in action %}
 									<li>
 										<img src="{% static show.display %}">
-										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
-										<h4>{{ show.rating }} / 10</h4>
+                                        <div class="title-icon">
+                                            <h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</a></h3>
+
+                                            {% if user.is_authenticated %}
+                                                {% if show.name in bookmarked %}
+                                                    <i class="bookmark-filled material-icons">bookmark</i>
+                                                {% else %}
+                                                    <form method="POST">
+                                                        {% csrf_token %}
+                                                        <label for="bookmark-action" style="display:none"></label>
+                                                        <input id="bookmark-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+                                                        <button class="bookmark-btn" type="submit"><i class="bookmark-empty material-icons">bookmark_border</i></button>
+                                                    </form>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+
+                                        {% if show.rating == 10.0 %}
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+                                        {% elif show.rating >= 9.0 and show.rating < 10.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+                                        {% elif show.rating >= 8.0 and show.rating < 9.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 7.0 and show.rating < 8.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 6.0 and show.rating < 7.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 5.0 and show.rating < 6.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 4.0 and show.rating < 5.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 3.0 and show.rating < 4.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 2.0 and show.rating < 3.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 1.0 and show.rating < 2.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% else %}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% endif %}
+
 										<p>{{show.summary}}</p>
 									</li>
-									<hr>
-									{% endfor %}
-								</ul>
+                                    <hr>
+                                    {% endfor %}
+                                </ul>
 							</div>
 						</div>
 					</div>
@@ -138,8 +222,90 @@
 									{% for show in romance %}
 									<li>
 										<img src="{% static show.display %}">
-										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
-										<h4>{{ show.rating }} / 10</h4>
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</a></h3>
+
+                                        {% if user.is_authenticated %}
+                                            {% if show.name in bookmarked %}
+                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                            {% else %}
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <label for="bookmark-romance" style="display:none"></label>
+                                                    <input id="bookmark-romance" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+                                                    <button class="bookmark-btn" type="submit">
+                                                        <i class="bookmark-empty material-icons">bookmark_border</i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if show.rating == 10.0 %}
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+                                        {% elif show.rating >= 9.0 and show.rating < 10.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+                                        {% elif show.rating >= 8.0 and show.rating < 9.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 7.0 and show.rating < 8.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 6.0 and show.rating < 7.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 5.0 and show.rating < 6.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 4.0 and show.rating < 5.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 3.0 and show.rating < 4.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 2.0 and show.rating < 3.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 1.0 and show.rating < 2.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% else %}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% endif %}
 										<p>{{show.summary}}</p>
 									</li>
 									<hr>
@@ -174,8 +340,90 @@
 									{% for show in comedy %}
 									<li>
 										<img src="{% static show.display %}">
-										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
-										<h4>{{ show.rating }} / 10</h4>
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</a></h3>
+
+                                        {% if user.is_authenticated %}
+                                            {% if show.name in bookmarked %}
+                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                            {% else %}
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <label for="bookmark-comedy" style="display:none"></label>
+                                                    <input id="bookmark-comedy" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+                                                    <button class="bookmark-btn" type="submit">
+                                                        <i class="bookmark-empty material-icons">bookmark_border</i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if show.rating == 10.0 %}
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+                                        {% elif show.rating >= 9.0 and show.rating < 10.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+                                        {% elif show.rating >= 8.0 and show.rating < 9.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 7.0 and show.rating < 8.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 6.0 and show.rating < 7.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 5.0 and show.rating < 6.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 4.0 and show.rating < 5.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 3.0 and show.rating < 4.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 2.0 and show.rating < 3.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 1.0 and show.rating < 2.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% else %}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% endif %}
 										<p>{{show.summary}}</p>
 									</li>
 									<hr>
@@ -210,8 +458,90 @@
 									{% for show in crime %}
 									<li>
 										<img src="{% static show.display %}">
-										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
-										<h4>{{ show.rating }} / 10</h4>
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</a></h3>
+
+                                        {% if user.is_authenticated %}
+                                            {% if show.name in bookmarked %}
+                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                            {% else %}
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <label for="bookmark-crime" style="display:none"></label>
+                                                    <input id="bookmark-crime" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+                                                    <button class="bookmark-btn" type="submit">
+                                                        <i class="bookmark-empty material-icons">bookmark_border</i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if show.rating == 10.0 %}
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+                                        {% elif show.rating >= 9.0 and show.rating < 10.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+                                        {% elif show.rating >= 8.0 and show.rating < 9.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 7.0 and show.rating < 8.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 6.0 and show.rating < 7.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 5.0 and show.rating < 6.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 4.0 and show.rating < 5.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 3.0 and show.rating < 4.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 2.0 and show.rating < 3.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 1.0 and show.rating < 2.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% else %}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% endif %}
 										<p>{{show.summary}}</p>
 									</li>
 									<hr>
@@ -246,8 +576,90 @@
 									{% for show in thriller %}
 									<li>
 										<img src="{% static show.display %}">
-										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
-										<h4>{{ show.rating }} / 10</h4>
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</a></h3>
+
+                                        {% if user.is_authenticated %}
+                                            {% if show.name in bookmarked %}
+                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                            {% else %}
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <label for="bookmark-thriller" style="display:none"></label>
+                                                    <input id="bookmark-thriller" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+                                                    <button class="bookmark-btn" type="submit">
+                                                        <i class="bookmark-empty material-icons">bookmark_border</i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if show.rating == 10.0 %}
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+                                        {% elif show.rating >= 9.0 and show.rating < 10.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+                                        {% elif show.rating >= 8.0 and show.rating < 9.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 7.0 and show.rating < 8.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 6.0 and show.rating < 7.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 5.0 and show.rating < 6.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 4.0 and show.rating < 5.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 3.0 and show.rating < 4.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 2.0 and show.rating < 3.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 1.0 and show.rating < 2.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% else %}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% endif %}
 										<p>{{show.summary}}</p>
 									</li>
 									<hr>
@@ -282,8 +694,90 @@
 									{% for show in reality %}
 									<li>
 										<img src="{% static show.display %}">
-										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</h3></a>
-										<h4>{{ show.rating }} / 10</h4>
+										<h3><a href="{{ show.get_absolute_url }}" style="color:black">{{show.name}}</a></h3>
+
+                                        {% if user.is_authenticated %}
+                                            {% if show.name in bookmarked %}
+                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                            {% else %}
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <label for="bookmark-reality" style="display:none"></label>
+                                                    <input id="bookmark-reality" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+                                                    <button class="bookmark-btn" type="submit">
+                                                        <i class="bookmark-empty material-icons">bookmark_border</i>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if show.rating == 10.0 %}
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+                                        {% elif show.rating >= 9.0 and show.rating < 10.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+                                        {% elif show.rating >= 8.0 and show.rating < 9.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 7.0 and show.rating < 8.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 6.0 and show.rating < 7.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 5.0 and show.rating < 6.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 4.0 and show.rating < 5.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 3.0 and show.rating < 4.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 2.0 and show.rating < 3.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% elif show.rating >= 1.0 and show.rating < 2.0%}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% else %}
+                                            <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+										    <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
+                                        {% endif %}
 										<p>{{show.summary}}</p>
 									</li>
 									<hr>
