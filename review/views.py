@@ -1,11 +1,9 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import ShowList, ShowReview
-from django.urls import reverse
+from review.models import ShowList, ShowReview
 from .forms import ShowReviewForm
 from django.http import HttpResponseRedirect
 
-# Create your views here.
 
 def index(request, pk):
     show = ShowList.objects.get(id=pk)
@@ -16,23 +14,29 @@ def index(request, pk):
     if review_list.count() == 0:
         review_list = None
 
-    form = ShowReviewForm(request.POST)
+    if request.method == 'POST':
+        form = ShowReviewForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            rating = form.cleaned_data['rating']
+            review = form.cleaned_data['review']
 
-    if form.is_valid():
-        review = form.cleaned_data['review']
-        username = form.cleaned_data['username']
-        ReviewObj = ShowReview()
-        ReviewObj.name = show_name
-        ReviewObj.username = username
-        ReviewObj.review = review
-        ReviewObj.save()
-        return HttpResponseRedirect('../review/')
+            ReviewObj = ShowReview()
+            ReviewObj.name = show_name
+            ReviewObj.username = user.username
+            ReviewObj.rating = rating
+            ReviewObj.review = review
+            ReviewObj.save()
+
+            return HttpResponseRedirect('../review/')
+        else:
+            print("form not valid")
 
     context ={
         'id': pk,
+        'show': show,
         'show_name': show_name,
         'reviews': review_list,
-        'form': form,
         'show_rating': show_rating,
     }
 
