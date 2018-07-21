@@ -1,37 +1,62 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import TVShow
+from .forms import BookmarkForm
 
 # Create your views here.
 def index(request):
-	actionshows = TVShow.objects.filter(genre='Action')[:10]
-	romanceshows = TVShow.objects.filter(genre='Romance')[:10]
-	comedyshows = TVShow.objects.filter(genre='Comedy')[:10]
-	crimeshows = TVShow.objects.filter(genre='Crime')[:10]
-	thrillershows = TVShow.objects.filter(genre='Thriller')[:10]
-	realityshows = TVShow.objects.filter(genre='Reality')[:10]
+    actionshows = TVShow.objects.filter(genre='Action')
+    romanceshows = TVShow.objects.filter(genre='Romance')
+    comedyshows = TVShow.objects.filter(genre='Comedy')
+    crimeshows = TVShow.objects.filter(genre='Crime')
+    thrillershows = TVShow.objects.filter(genre='Thriller')
+    realityshows = TVShow.objects.filter(genre='Reality')
 
-	context = {
-		'action': actionshows,
-		'romance': romanceshows,
-		'comedy': comedyshows,
-		'crime': crimeshows,
-		'thriller': thrillershows,
+    bookmark_list = []
+
+    if request.user.is_authenticated:
+        user = request.user
+        if request.method == 'POST':
+            form = BookmarkForm(request.POST)
+            if form.is_valid():
+                bookmarkName = form.cleaned_data['bookmark']
+                if user.profile.bookmark == "":
+                    user.profile.bookmark = bookmarkName
+                else:
+                    user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName
+                user.save()
+                return HttpResponseRedirect(request.path_info)
+            else:
+                print("form not valid")
+
+        bookmarked = user.profile.bookmark
+        bookmark_list = bookmarked.split(", ")
+
+    context = {
+        'action': actionshows,
+        'romance': romanceshows,
+        'comedy': comedyshows,
+        'crime': crimeshows,
+        'thriller': thrillershows,
         'reality': realityshows,
-	}
-	return render(request,'mainpage/index.html', context)
+        'bookmarked': bookmark_list,
+    }
+
+    return render(request,'mainpage/index.html', context)
+
 
 def showPage(request):
-	return HttpResponse("Hello world!")
+    return HttpResponse("Hello world!")
+
 
 def ShowDetailView(request, pk):
-	try:
-		tvshow_id = TVShow.objects.get(pk=pk)
-	except TVShow.DoesNotExist:
-		raise Http404("Show does not exist")
+    try:
+        tvshow_id = TVShow.objects.get(pk=pk)
+    except TVShow.DoesNotExist:
+        raise Http404("Show does not exist")
 
-	return render(
-		request,
-		'catalog/detail.html',
-		{'tvshow': tvshow_id, }
-	)
+    return render(
+        request,
+        'catalog/detail.html',
+        {'tvshow': tvshow_id, }
+    )
