@@ -1,12 +1,29 @@
-/*
-  Theme Name: BizPage
-  Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-  Author: BootstrapMade.com
-  License: https://bootstrapmade.com/license/
-*/
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+.bookmark-btn {
+    background-color: transparent;
+    border: none;
+    float:right;
+    position:relative;
+    top:-37px;
+    cursor:pointer;
+}
+
+.bookmark-filled {
+    color: #18c33a;
+    float:right;
+    position:relative;
+    top:-37px;
+    font-size: 36px;
+    right: 12px;
+}
+
+.bookmark-empty {
+    font-size: 36px;
+}
+
 body {
   background: #fff;
   color: #666666;
@@ -506,6 +523,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Genre Section
 --------------------------------*/
+
+.title-icon {
+}
+
 #genre {
   background-size: cover;
   padding: 60px 0 40px 0;
@@ -597,7 +618,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   left: -50px;
   width: 107%;
 }
-
 
 /*--------------------------------------------------------------
 # Footer
