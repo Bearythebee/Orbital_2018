@@ -1,5 +1,6 @@
 .row {
-    margin-top: 30px;
+    padding: 30px 0 70px 0;
+    margin: 0 0 50px 0;
 }
 
 .profile-sidebar {
@@ -45,7 +46,7 @@
 }
 
 .nav-pills .nav-link {
-    border: 0.5px solid #999999;
+    border: 0.5px solid #d4d9db;
 }
 
 .nav-pills .nav-link select-box{
@@ -57,3 +58,8 @@
     top: 7px;
     margin-right: 15px;
 }
+
+#passwordModal .modal-header {
+    padding-bottom: 0;
+}
+
