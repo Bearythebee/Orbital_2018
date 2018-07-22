@@ -52,7 +52,7 @@
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
                     <li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, <a href="/profiles">{{ user.get_full_name }}</a></strong></li>
-                    <li><a href="{% url 'recommendations:user_recommendation_list' %}"> Suggestions </a></li>
+                    <li><a href="{% url 'recommendations: recommendations' %}"> Suggestions </a></li>
 					<li>
 						<form class="logout-link"action="/accounts/logout/" method="post">
 							{% csrf_token %}
