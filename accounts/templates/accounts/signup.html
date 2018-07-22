@@ -7,8 +7,8 @@
 
 {% block content %}
 
-    <div class="container" id="signup-page">
-        <h1>SIGN UP</h1>
+	<div class="container" id="signup-page">
+		<h1>SIGN UP</h1>
         <form class="site-form center-justified" action="/accounts/signup/" method="post">
             {% csrf_token %}
             {% for field in form %}
@@ -24,6 +24,6 @@
             {% endfor %}
             <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
         </form>
-    </div>
+	</div>
 
 {% endblock %}

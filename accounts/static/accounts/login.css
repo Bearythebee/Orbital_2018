@@ -1,0 +1,24 @@
+#login-page {
+	padding: 50px 0 100px 0;
+    text-align: center;
+}
+
+#left-col {
+    border-right: 3px #666 solid;
+}
+
+#right-col {
+    text-align: center;
+}
+
+#fb-btn {
+    width:40%;
+    height: auto;
+    margin: 60px 0 0 0;
+}
+
+#google-btn {
+    width: 40%;
+    height: auto;
+    margin: 30px 0 60px 0;
+}
