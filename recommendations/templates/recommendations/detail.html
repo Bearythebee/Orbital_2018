@@ -1,0 +1,13 @@
+{% extends 'recommendations/recommendationslayout.html' %}
+
+{% block title %}
+<h2>Recommendations for {{ username }}</h2>
+<div class='container'>
+	{% if show_list == None %}
+        <h3>No reviews yet!</h3>
+    {% else %}
+        {% for i in show_list %}
+        <h3>{{i.name}}</h3>
+
+</div>>
+{% endblock %}

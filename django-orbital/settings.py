@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_social_share',
     'profiles',
+    'recommendations',
 ]
 
 MIDDLEWARE = [

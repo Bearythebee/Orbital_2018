@@ -37,3 +37,35 @@ def ShowDetailView(request,pk):
     }
     return render(request, 'catalog/detail.html', context)
 
+@login_required
+def ShowDetailViewR(request,pk):
+    try:
+        show = Show.objects.get(pk=pk)
+    except tvshow.DoesNotExist:
+        raise Http404("Show does not exist")
+
+    fullcast = show.fullcast.split(", ")
+    roles = show.role.split(", ")
+    ctr = list(range(1, len(fullcast) + 1))
+
+    if show.genre != 'Reality':
+        total = zip(ctr, fullcast, roles)
+    else:
+        total = zip(ctr, fullcast)
+    id = pk
+    rating = show.rating
+
+    if pk == "120":
+        next_id = "1"
+    else:
+        next_id = str(int(pk) + 1)
+
+    context = {
+        'tvshow': show,
+        'total': total,
+        'id': id,
+        'rating': rating,
+        'next_id': next_id,
+        'username': request.user.username,
+    }
+    return render(request, 'catalog/detail.html', context)
