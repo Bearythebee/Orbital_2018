@@ -12,23 +12,9 @@ class ShowList(models.Model):
 
 
 class ShowReview(models.Model):
-    ONE = '1'
-    TWO = '2'
-    THREE = '3'
-    FOUR = '4'
-    FIVE = '5'
-
-    RATING = (
-        (ONE, '1'),
-        (TWO, '2'),
-        (THREE, '3'),
-        (FOUR, '4'),
-        (FIVE, '5'),
-    )
-
     username = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
-    rating = models.CharField(null=True, max_length=1, default=None, choices=RATING, verbose_name="")
+    rating = models.DecimalField(max_digits=4,decimal_places=1)
     review = models.TextField()
 
     def __str__(self):

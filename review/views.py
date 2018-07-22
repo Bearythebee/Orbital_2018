@@ -30,6 +30,7 @@ def index(request, pk):
 
             return HttpResponseRedirect('../review/')
         else:
+            print(form.cleaned_data['review'])
             print("form not valid")
 
     context ={
