@@ -65,16 +65,20 @@
             <div class="card mt-4" id="main-card">
 
                 <div class="row">
-                    {% for show in show_list %}
-                        <div class="col-sm-4">
-                            <div class="card">
-                                <img class="card-img-top" src="{% static show.display %}" alt="image.jpg">
-                                <div class="card-body" style="background: black;">
-                                    <h5 class="card-title text-center"><a href="{{ show.get_absolute_url }}" style="color:#fff">{{show.name}}</a></h5>
+                    {% if show_list == None %}
+                        <h1>No bookmarks yet!</h1>
+                    {% else %}
+                        {% for show in show_list %}
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <img class="card-img-top" src="{% static show.display %}" alt="image.jpg">
+                                    <div class="card-body" style="background: black">
+                                        <h5 class="card-title text-center"><a href="{{ show.get_absolute_url }}" style="color:#fff">{{show.name}}</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

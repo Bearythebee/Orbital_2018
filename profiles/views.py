@@ -41,13 +41,18 @@ def bookmarks(request):
     bookmark_list = bookmarked.split(", ")
 
     show_list = []
-    for i in bookmark_list:
-        show_list.append(TVShow.objects.get(name=i))
+
+    if len(bookmarked) == 0:
+        show_list = None
+    else:
+        for i in bookmark_list:
+            show_list.append(TVShow.objects.get(name=i))
 
     context = {
         'bookmarks': bookmark_list,
         'show_list': show_list,
     }
+
     return render(request, 'profiles/bookmarks.html', context)
 
 
