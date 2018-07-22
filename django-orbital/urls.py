@@ -10,5 +10,4 @@ urlpatterns = [
     url(r'^catalog/',include('catalog.urls')),
     url(r'^review/', include('review.urls')),
     url(r'^profiles/', include('profiles.urls')),
-    url(r'^recommendations/',include('recommendations.urls')),
 ]
