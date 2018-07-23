@@ -25,3 +25,10 @@ class Show(models.Model):
         Returns the url to access a detail record for this tvshow
         """
         return reverse('show-detail', args=[str(self.id)])
+
+class Cluster(models.Model):
+    name = models.CharField(max_length=100)
+    users = models.ManyToManyField(User)
+
+    def get_members(self):
+        return "\n".join([u.username for u in self.users.all()])
