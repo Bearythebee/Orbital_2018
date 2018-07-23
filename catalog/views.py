@@ -32,7 +32,7 @@ def ShowDetailView(request,pk):
     else:
         next_id = str(int(pk) + 1)
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         owner_name = request.user.username
         # request user reviewed shows
         review_list = ShowReview.objects.filter(username = owner_name)
