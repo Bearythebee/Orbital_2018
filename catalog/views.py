@@ -32,33 +32,43 @@ def ShowDetailView(request,pk):
     else:
         next_id = str(int(pk) + 1)
 
-    owner_name = request.user.username
-    # request user reviewed shows
-    review_list = ShowReview.objects.filter(username = owner_name)
-    user_reviews_show_name = set(map(lambda x: x.name, review_list))
+    if request.user.is_authenticated():
+        owner_name = request.user.username
+        # request user reviewed shows
+        review_list = ShowReview.objects.filter(username = owner_name)
+        user_reviews_show_name = set(map(lambda x: x.name, review_list))
 
-    # get request user cluster name (just the first one right now)
-    try:
-        user_cluster_name = User.objects.get(username=request.user.username).cluster_set.first().name
-    except: # if no cluster has been assigned for a user, update clusters
-        update_clusters2()
-        user_cluster_name = User.objects.get(username=request.user.username).cluster_set.first().name
+        # get request user cluster name (just the first one right now)
+        try:
+            user_cluster_name = User.objects.get(username=request.user.username).cluster_set.first().name
+        except: # if no cluster has been assigned for a user, update clusters
+            update_clusters()
+            user_cluster_name = User.objects.get(username=request.user.username).cluster_set.first().name
 
-    # get usernames for other members of the cluster
-    user_cluster_other_members = Cluster.objects.get(name=user_cluster_name).users.exclude(username=request.user.username).all()
-    other_members_usernames = set(map(lambda x: x.username, user_cluster_other_members))
+        # get usernames for other members of the cluster
+        user_cluster_other_members = Cluster.objects.get(name=user_cluster_name).users.exclude(username=request.user.username).all()
+        other_members_usernames = set(map(lambda x: x.username, user_cluster_other_members))
 
-    # get reviews by those users, excluding shows reviewed by the request user
-    other_users_reviews = ShowReview.objects.filter(username__in=other_members_usernames).exclude(name__in=user_reviews_show_name)
-    other_users_reviews_show_name = set(map(lambda x: x.name, other_users_reviews))
-    unwatched = TVShow.objects.filter(name__in=other_users_reviews_show_name)
+        # get reviews by those users, excluding shows reviewed by the request user
+        other_users_reviews = ShowReview.objects.filter(username__in=other_members_usernames).exclude(name__in=user_reviews_show_name)
+        other_users_reviews_show_name = set(map(lambda x: x.name, other_users_reviews))
+        unwatched = TVShow.objects.filter(name__in=other_users_reviews_show_name)
 
-    context = {
-        'tvshow': show,
-        'total': total,
-        'id': id,
-        'rating': rating,
-        'next_id': next_id,
-        'shows': unwatched,
-    }
-    return render(request, 'catalog/detail.html', context)
+        context = {
+            'tvshow': show,
+            'total': total,
+            'id': id,
+            'rating': rating,
+            'next_id': next_id,
+            'shows': unwatched,
+        }
+        return render(request, 'catalog/detail.html', context)
+    else:
+        context = {
+            'tvshow': show,
+            'total': total,
+            'id': id,
+            'rating': rating,
+            'next_id': next_id,
+        }
+        return render(request, 'catalog/detail.html', context)

@@ -99,9 +99,13 @@
                     {{tvshow.site}}
                   </div>
                   <div id="rec" style="display:none">
-                        {% for i in shows %}
-                          <li>{{ i.name }} </li>
-                        {% endfor %}
+                        {% if user.is_authenticated %}
+                          {% for i in shows %}
+                            <li>{{ i.name }} </li>
+                          {% endfor %}
+                        {% else %}
+                          <h3> Please Login </h3>
+                        {% endif %}
                       </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="unhide('rec','watch')">Another show?</button></a>
