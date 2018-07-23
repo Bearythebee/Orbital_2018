@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Show
+from .models import Show, Cluster
 
 # Register your models here.
 
