@@ -3,7 +3,7 @@ from django.shortcuts import render
 from review.models import ShowList, ShowReview
 from .forms import ShowReviewForm
 from django.http import HttpResponseRedirect
-from .suggestions import update_clusters
+from .suggestions import update_clusters1
 
 
 def index(request, pk):
@@ -28,7 +28,7 @@ def index(request, pk):
             ReviewObj.rating = rating
             ReviewObj.review = review
             ReviewObj.save()
-            update_clusters()
+            update_clusters1()
 
 
             return HttpResponseRedirect('../review/')

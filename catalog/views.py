@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from review.models import ShowReview
 from mainpage.models import TVShow
 from django.contrib.auth.models import User
-from review.suggestions import update_clusters
+from review.suggestions import update_clusters2
 
 # Create your views here.
 
@@ -41,7 +41,7 @@ def ShowDetailView(request,pk):
     try:
         user_cluster_name = User.objects.get(username=request.user.username).cluster_set.first().name
     except: # if no cluster has been assigned for a user, update clusters
-        update_clusters()
+        update_clusters2()
         user_cluster_name = User.objects.get(username=request.user.username).cluster_set.first().name
 
     # get usernames for other members of the cluster
