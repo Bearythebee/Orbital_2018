@@ -93,11 +93,16 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
+                  <div id="watch" class="modal-body">
                     {{tvshow.site}}
                   </div>
+                  <div id="rec" style="display:none">
+                        {% for i in shows %}
+                          <li>{{ i.name }} </li>
+                        {% endfor %}
+                      </div>
                   <div class="modal-footer">
-                    <a href="../{{ next_id }}"><button type="button" class="btn btn-primary">Another show?</button></a>
+                    <button type="button" class="btn btn-primary" onclick="unhide('rec','watch')">Another show?</button></a>
                     <button type="button" class="btn btn-success" data-dismiss="modal">And we're done!</button>
                   </div>
                 </div>
