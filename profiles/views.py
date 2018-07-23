@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 def reviews(request):
     owner_name = request.user.username
     review_list = ShowReview.objects.filter(username = owner_name)
+    checkError = False
 
     if review_list.count() == 0:
         review_list = None
@@ -20,15 +21,16 @@ def reviews(request):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('change_password')
+            return redirect('../profiles')
         else:
-            messages.error(request, 'Please correct the error below.')
+            checkError = True
     else:
         form = PasswordChangeForm(request.user)
 
     context = {
         'reviews': review_list,
         'form': form,
+        'checkError': checkError,
     }
 
     return render(request, 'profiles/reviews.html', context)
@@ -39,6 +41,7 @@ def bookmarks(request):
     user = request.user
     bookmarked = user.profile.bookmark
     bookmark_list = bookmarked.split(", ")
+    checkError = False
 
     show_list = []
 
@@ -48,9 +51,23 @@ def bookmarks(request):
         for i in bookmark_list:
             show_list.append(TVShow.objects.get(name=i))
 
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('../profiles/bookmarks')
+        else:
+            checkError = True
+    else:
+        form = PasswordChangeForm(request.user)
+
     context = {
         'bookmarks': bookmark_list,
         'show_list': show_list,
+        'form': form,
+        'checkError': checkError,
     }
 
     return render(request, 'profiles/bookmarks.html', context)
