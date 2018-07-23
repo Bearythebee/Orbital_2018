@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 #intro-bg {
 	width: 100%;
 	height: 100vh;
-	filter: brightness(30%);
+	filter: brightness(20%);
 }
 
 .intro-content {
