@@ -30,11 +30,10 @@ def index(request, pk):
             ReviewObj.save()
             update_clusters1()
 
-
+            message.success(request, "Thanks for leaving a review!")
             return HttpResponseRedirect('../review/')
         else:
-            print(form.cleaned_data['review'])
-            print("form not valid")
+            message.error(request, "Please fill in all fields!")
 
     context ={
         'id': pk,
@@ -42,6 +41,7 @@ def index(request, pk):
         'show_name': show_name,
         'reviews': review_list,
         'show_rating': show_rating,
+        'form': ShowReviewForm(request.POST),
     }
 
     return render(request, 'review/review.html', context)

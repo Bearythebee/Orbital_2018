@@ -1,5 +1,6 @@
 {% extends 'review/reviewlayout.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block loadtemplate %}
     <link href="{% static 'review/review.css' %}" rel="stylesheet">
@@ -131,10 +132,12 @@
                                     <input type="radio" id="starhalf" name="rating" value="0.5"><label class="half" for="starhalf" title="0.5 stars"></label>
                                 </span>
 
-                                <p>
-                                    <label for="review" style="display:none"></label>
-                                    <textarea id="review" name="review" rows="5" cols="85" placeholder="Leave your review here..."></textarea>
-                                </p>
+                                <!--<p>-->
+                                    <!--<label for="review" style="display:none"></label>-->
+                                    <!--<textarea id="review" name="review" rows="5" cols="85" placeholder="Leave your review here..."></textarea>-->
+                                <!--</p>-->
+
+								<p>{% render_field form.review class="form-control" %}</p>
 
                                 <button type="submit" class="btn btn-primary">Add review</button>
                             </form>
