@@ -4,7 +4,7 @@ from review.models import ShowList, ShowReview
 from .forms import ShowReviewForm
 from django.http import HttpResponseRedirect
 from .suggestions import update_clusters1
-from django.contrib.messages import messages
+from django.contrib import messages
 
 
 def index(request, pk):
