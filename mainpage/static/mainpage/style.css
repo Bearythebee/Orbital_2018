@@ -499,47 +499,39 @@ body.mobile-nav-active #mobile-nav-toggle {
   background: #000;
 }
 
-#guide .box {
-  padding: 30px 20px;
+.box {
+  background: #222;
 }
 
-#guide .box-bg {
-  background-image: linear-gradient(0deg, #000000 0%, #242323 50%, #000000 100%);
+.box-bg {
+  background-image: linear-gradient(0deg, #222222 0%, #333333 50%, #222222 100%);
 }
 
-#guide i {
+.box i, .box-bg i {
   color: #18d26e;
   font-size: 48px;
   display: inline-block;
   line-height: 1;
 }
 
-#guide h4 {
+.box h4, .box-bg h4 {
   font-weight: 400;
   margin: 15px 0;
   font-size: 18px;
-}
-
-#guide h4 a {
   color: #fff;
 }
 
-#guide h4 a:hover {
-  color: #18d26e;
-}
-
-#guide p {
+.box p, .box-bg p {
   font-size: 14px;
   line-height: 24px;
   color: #fff;
-  margin-bottom: 0;
+  margin-bottom: 30px;
 }
 
 /* Genre Section
 --------------------------------*/
 
-.title-icon {
-}
+
 
 #genre {
   background-size: cover;

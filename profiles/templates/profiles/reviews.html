@@ -72,61 +72,62 @@
                         <div class="list-group-item">
                             <div class="col-md-12" style="margin-top:15px">
                                 <h4 class="list-group-item-heading"><strong>{{i.name}}</strong></h4>
-                                 {% if i.rating == 5.0 %}
+
+                                {% if i.rating == 5.0 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
-                                {% elif i.rating >= 4.5 and i.rating < 5.0%}
+                                {% elif i.rating == 4.5 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
-                                {% elif i.rating >= 4.0 and i.rating < 4.5%}
+                                {% elif i.rating == 4.0 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
-                                {% elif i.rating >= 3.5.0 and i.rating < 4.0%}
+                                {% elif i.rating == 3.5 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
-                                {% elif i.rating >= 3.0 and i.rating < 3.5%}
+                                {% elif i.rating == 3.0 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
-                                {% elif i.rating >= 2.5 and i.rating < 3.0%}
+                                {% elif i.rating == 2.5 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
-                                {% elif i.rating >= 2.0 and i.rating < 2.5 %}
+                                {% elif i.rating == 2.0 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
-                                {% elif i.rating >= 1.5 and i.rating < 2.0%}
+                                {% elif i.rating == 1.5 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
-                                {% elif i.rating >= 1.0 and i.rating < 1.5 %}
+                                {% elif i.rating == 1.0 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_rate</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
-                                {% elif i.rating >= 0.5 and i.rating < 1.0%}
+                                {% elif i.rating == 0.5 %}
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_half</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
@@ -139,6 +140,7 @@
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                     <i class="material-icons" style="width:25px; color: #f7f74c;">star_border</i>
                                 {% endif %}
+
                                 <p class="list-group-item-text">{{i.review}}</p>
                             </div>
                         </div>
