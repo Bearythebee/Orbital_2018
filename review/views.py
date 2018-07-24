@@ -4,6 +4,7 @@ from review.models import ShowList, ShowReview
 from .forms import ShowReviewForm
 from django.http import HttpResponseRedirect
 from .suggestions import update_clusters1
+from django.contrib.messages import messages
 
 
 def index(request, pk):
@@ -30,10 +31,10 @@ def index(request, pk):
             ReviewObj.save()
             update_clusters1()
 
-            message.success(request, "Thanks for leaving a review!")
+            messages.success(request, "Thanks for leaving a review!")
             return HttpResponseRedirect('../review/')
         else:
-            message.error(request, "Please fill in all fields!")
+            messages.error(request, "Please fill in all fields!")
 
     context ={
         'id': pk,
