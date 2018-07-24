@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import TVShow
 from .forms import BookmarkForm
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -12,6 +13,9 @@ def index(request):
     thrillershows = TVShow.objects.filter(genre='Thriller')
     realityshows = TVShow.objects.filter(genre='Reality')
 
+    checkBookmark = False
+    modalName = None
+
     bookmark_list = []
 
     if request.user.is_authenticated:
@@ -20,14 +24,17 @@ def index(request):
             form = BookmarkForm(request.POST)
             if form.is_valid():
                 bookmarkName = form.cleaned_data['bookmark']
+                modalName = form.cleaned_data['modalName']
+
                 if user.profile.bookmark == "":
                     user.profile.bookmark = bookmarkName
                 else:
                     user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName
                 user.save()
+                messages.success(request, "Bookmark added.")
                 return HttpResponseRedirect(request.path_info)
             else:
-                print("form not valid")
+                messages.error(request, "Error while adding bookmark.")
 
         bookmarked = user.profile.bookmark
         bookmark_list = bookmarked.split(", ")
@@ -40,6 +47,8 @@ def index(request):
         'thriller': thrillershows,
         'reality': realityshows,
         'bookmarked': bookmark_list,
+        'checkBookmark': checkBookmark,
+        'modalName': modalName,
     }
 
     return render(request,'mainpage/index.html', context)

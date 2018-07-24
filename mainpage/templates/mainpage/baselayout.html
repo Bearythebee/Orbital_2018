@@ -138,6 +138,9 @@
                     alert('{{msg}}');
                 {% endfor %}
             {% endif %}
+            {% if checkBookmark == True %}
+                $('#{{modalName}}').modal('show');
+            {% endif %}
         });
 	</script>
 
