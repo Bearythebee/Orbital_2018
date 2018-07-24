@@ -111,16 +111,20 @@
                     </button>
                   </div>
                   <div class="row" style="padding:10px">
-                    {% for show in shows %}
-                      <div class="col-sm-4">
-                          <div class="card" style="margin:10px">
-                              <img class="card-img-top" src="{% static show.display %}" alt="image.jpg" style="width:250;height:150px;">
-                              <div class="card-body" style="background:black;width:150;height:60px;padding:5px">
-                                  <h5 class="card-title text-center"><a href="{{ show.get_absolute_url }}" style="color:#fff;font-size:10px">{{show.name}}</a></h5>
-                              </div>
-                          </div>
-                      </div>
-                    {% endfor %}
+                    {% if user.is_authenticated %}
+                      {% for show in shows %}
+                        <div class="col-sm-4">
+                            <div class="card" style="margin:10px">
+                                <img class="card-img-top" src="{% static show.display %}" alt="image.jpg" style="width:250;height:150px;">
+                                <div class="card-body" style="background:black;width:150;height:60px;padding:5px">
+                                    <h5 class="card-title text-center"><a href="{{ show.get_absolute_url }}" style="color:#fff;font-size:10px">{{show.name}}</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <h4>Please login for more recommendations</h4>
+                    {% endif %}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="unhide('rec','watch')">Back</button></a>
