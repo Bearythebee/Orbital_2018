@@ -78,11 +78,13 @@
             <div class="container" style="height: 70vh;">
         {% else %}
             <div class="container">
-    {% elif show_list %}
+        {% endif %}
+    {% else if show_list %}
         {% if show_list == None %}
             <div class="container" style="height: 70vh;">
         {% else %}
             <div class="container">
+        {% endif %}
     {% else %}
         <div class="container">
     {% endif %}
