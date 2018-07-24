@@ -88,7 +88,7 @@
 
             <div class="modal fade" id="watchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div id = "watch" class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Here's where to watch!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -98,18 +98,32 @@
                   <div id="watch" class="modal-body">
                     {{tvshow.site}}
                   </div>
-                  <div id="rec" style="display:none">
-                        {% if user.is_authenticated %}
-                          {% for i in shows %}
-                            <li>{{ i.name }} </li>
-                          {% endfor %}
-                        {% else %}
-                          <h3> Please Login </h3>
-                        {% endif %}
-                      </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="unhide('rec','watch')">Another show?</button></a>
                     <button type="button" class="btn btn-success" data-dismiss="modal">And we're done!</button>
+                  </div>
+                </div>
+                <div id = "rec" class="modal-content" style="display:none">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Recommended Shows</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="row" style="padding:10px">
+                    {% for show in shows %}
+                      <div class="col-sm-4">
+                          <div class="card" style="margin:10px">
+                              <img class="card-img-top" src="{% static show.display %}" alt="image.jpg" style="width:250;height:150px;">
+                              <div class="card-body" style="background:black;width:150;height:40px;padding:5px">
+                                  <h5 class="card-title text-center"><a href="{{ show.get_absolute_url }}" style="color:#fff;font-size:10px">{{show.name}}</a></h5>
+                              </div>
+                          </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="unhide('rec','watch')">Back</button></a>
                   </div>
                 </div>
               </div>
