@@ -8,11 +8,7 @@
 
 {% block content %}
 
-{% if reviews == None %}
-    <div class="row" style="70vh">
-{% else %}
     <div class="row">
-{% endif %}
         <div class="col-lg-3 profile-sidebar">
             <div id="user-info">
                 <p id="user-fullname">{{ user.get_full_name }}</p>
