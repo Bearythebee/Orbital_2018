@@ -73,7 +73,20 @@
 		</div>
 	</header><!-- #header -->
 
-	<div class="container" style="height: 70vh;">
+    {% if reviews %}
+        {% if reviews == None %}
+            <div class="container" style="height: 70vh;">
+        {% else %}
+            <div class="container">
+    {% elif show_list %}
+        {% if show_list == None %}
+            <div class="container" style="height: 70vh;">
+        {% else %}
+            <div class="container">
+    {% else %}
+        <div class="container">
+    {% endif %}
+
         {% block content %}
         {% endblock %}
 	</div>
