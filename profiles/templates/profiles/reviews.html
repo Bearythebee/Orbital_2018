@@ -8,6 +8,12 @@
 
 {% block content %}
 
+{% if reviews == None %}
+<div class="container" style="height: 70vh;">
+{% else %}
+<div class="container">
+{% endif %}
+
     <div class="row">
         <div class="col-lg-3 profile-sidebar">
             <div id="user-info">
@@ -151,5 +157,6 @@
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}

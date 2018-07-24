@@ -73,25 +73,9 @@
 		</div>
 	</header><!-- #header -->
 
-    {% if reviews %}
-        {% if reviews == None %}
-            <div class="container" style="height: 70vh;">
-        {% else %}
-            <div class="container">
-        {% endif %}
-    {% elif show_list %}
-        {% if show_list == None %}
-            <div class="container" style="height: 70vh;">
-        {% else %}
-            <div class="container">
-        {% endif %}
-    {% else %}
-        <div class="container">
-    {% endif %}
+    {% block content %}
+    {% endblock %}
 
-        {% block content %}
-        {% endblock %}
-	</div>
 
 	<!--==========================
 	Footer
