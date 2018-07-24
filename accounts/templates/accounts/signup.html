@@ -1,5 +1,6 @@
 {% extends 'accounts/acclayout.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block loadtemplate %}
     <link href="{% static 'accounts/signup.css' %}" rel="stylesheet">
@@ -9,20 +10,34 @@
 
 	<div class="container" id="signup-page">
 		<h1>SIGN UP</h1>
-        <form class="site-form center-justified" action="/accounts/signup/" method="post">
+
+        <form class="site-form" action="/accounts/signup/" method="post">
             {% csrf_token %}
             {% for field in form %}
-                <p>
-                    <span class="field-label">{{field.label_tag}}</span>
-                    {{ field }}
-                    {% if field.errors %}
-                        {% for error in field.errors %}
-                            <span style="color: red">{{ error }}</span>
-                        {% endfor %}
-                    {% endif %}
-                </p>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-3 text-justify">
+                            {{ field.label_tag }}
+                        </div>
+                        <div class="col-lg-0"></div>
+                        <div class="col-lg-4">
+                            {% render_field field class="form-control form-control-sm" %}
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <span style="color: red">{{ error }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-            <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                </div>
+            </div>
         </form>
 	</div>
 

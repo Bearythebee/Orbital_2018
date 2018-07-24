@@ -103,5 +103,18 @@
 	<script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 	<script src="{% static 'lib/easing/easing.min.js' %}"></script>
 
+	<script type="text/javascript">
+        $( document ).ready(function() {
+            {% if messages %}
+                {% for msg in messages %}
+                    alert('{{msg}}');
+                {% endfor %}
+            {% endif %}
+            {% if checkError == True %}
+                $('#passwordModal').modal('show');
+            {% endif %}
+        });
+    </script>
+
 </body>
 </html>

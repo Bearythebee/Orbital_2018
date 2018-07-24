@@ -1,5 +1,6 @@
 {% extends 'accounts/acclayout.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block loadtemplate %}
 	<link href="{% static 'accounts/login.css'%}" rel="stylesheet">
@@ -8,24 +9,44 @@
 {% block content %}
 
 	<div class="container" id="login-page">
-		<div class="row">
-            <div class="col-md-6" id="left-col">
-                <h1>Login</h1>
+        <div class="row">
+            <div class="col-lg-6" id="left-col">
+                <h1>LOGIN</h1>
                 <form class="site-form"action="/accounts/login/"method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+
+                    {% if form.non_field_errors %}
+                    <ul class='form-errors'>
+                        {% for error in form.non_field_errors %}
+                        <li style="list-style-type:none; color: red;">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    {{ field.label_tag }}
+                                </div>
+                                {% render_field field class="form-control form-control-sm col-md-4" %}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
                     {% if request.GET.next %}
                         <input type="hidden" name="next" value={{request.GET.next}}>
                     {% endif%}
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-            <div class="col-md-6" id="right-col">
-                <a href="{% url 'social:begin' 'facebook' %}"><img id="fb-btn" src="{% static 'img/fb.png' %}"></a><br>
-                <a href="{% url 'social:begin' 'google-oauth2' %}"><img id="google-btn" src="{% static 'img/google.png' %}"></a>
+            <div class="col-lg-6" id="right-col">
+                <a href="{% url 'social:begin' 'facebook' %}"><img id="fb-btn" src="{% static '/img/fb.png' %}"></a><br>
+                <a href="{% url 'social:begin' 'google-oauth2' %}"><img id="google-btn" src="{% static '/img/google.png' %}"></a>
             </div>
         </div>
 	</div>
-
 
 {% endblock %}

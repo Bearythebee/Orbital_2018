@@ -125,5 +125,16 @@
 	<!-- Template Main Javascript File -->
 	<script src="{% static 'mainpage/mainscript.js' %}"></script>
 
+	<script type="text/javascript">
+        $( document ).ready(function() {
+            {% if messages %}
+                {% for msg in messages %}
+                    alert('{{msg}}');
+                {% endfor %}
+            {% endif %}
+        });
+	</script>
+
+
 </body>
 </html>

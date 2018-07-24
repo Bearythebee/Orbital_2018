@@ -1,5 +1,6 @@
 {% extends 'profiles/profilelayout.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block loadtemplate %}
     <link href="{% static 'profiles/reviewprofile.css' %}" rel="stylesheet">
@@ -29,17 +30,19 @@
                             <div class="modal-body">
                                 <form method="post">
                                     {% csrf_token %}
+
                                     {% for field in form %}
-                                        <p>
+                                        <div class="form-group">
                                             {{ field.label_tag }}
-                                            {{ field }}
+                                            {% render_field field class="form-control" %}
                                             {% if field.errors %}
                                                 {% for error in field.errors %}
-                                                    <span style="color: red">{{ error }}</span>
+                                                    <span style="color: red;">{{ error }}</span>
                                                 {% endfor %}
                                             {% endif %}
-                                        </p>
+                                        </div>
                                     {% endfor %}
+
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                     </div>
