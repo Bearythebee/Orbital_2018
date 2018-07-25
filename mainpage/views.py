@@ -20,7 +20,13 @@ def index(request):
             form = BookmarkForm(request.POST)
             if form.is_valid():
                 bookmarkName = form.cleaned_data['bookmark']
-                if user.profile.bookmark == "":
+                bookmarkArr = user.profile.bookmark.split(", ")
+
+                if bookmarkName in bookmarkArr:
+                    bookmarkArr.remove(bookmarkName)
+                    newStr = ", ".join(boomkarkArr)
+                    user.profile.bookmark = newStr
+                elif user.profile.bookmark == "":
                     user.profile.bookmark = bookmarkName
                 else:
                     user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName

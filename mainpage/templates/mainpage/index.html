@@ -116,7 +116,16 @@
 
                                             {% if user.is_authenticated %}
                                                 {% if show.name in bookmarked %}
-                                                    <i class="bookmark-filled material-icons">bookmark</i>
+                                                    <form method="POST">
+                                                        {% csrf_token %}
+                                                        <label for="bookmark-action" style="display:none"></label>
+                                                        <input id="bookmark-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+
+														 <label for="modalAction" style="display:none"></label>
+                                                        <input id="modalAction" type="text" name="modalName" value="#actionModal" style="display:none">
+
+                                                        <button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+                                                    </form>
                                                 {% else %}
                                                     <form method="POST">
                                                         {% csrf_token %}
