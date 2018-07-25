@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import TVShow
 from .forms import BookmarkForm
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -26,13 +27,17 @@ def index(request):
                     bookmarkArr.remove(bookmarkName)
                     newStr = ", ".join(bookmarkArr)
                     user.profile.bookmark = newStr
+                    messages.success(request, "Bookmark removed.")
                 elif user.profile.bookmark == "":
                     user.profile.bookmark = bookmarkName
+                    messages.success(request, "Bookmark added.")
                 else:
                     user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName
+                    messages.success(request, "Bookmark added.")
                 user.save()
+                return HttpResponseRedirect(request.path_info)
             else:
-                print("form not valid")
+                messages.error(request, "There was an error in adding your bookmark.")
 
         bookmarked = user.profile.bookmark
         bookmark_list = bookmarked.split(", ")
