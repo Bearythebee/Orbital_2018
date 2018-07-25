@@ -24,7 +24,7 @@ def index(request):
 
                 if bookmarkName in bookmarkArr:
                     bookmarkArr.remove(bookmarkName)
-                    newStr = ", ".join(boomkarkArr)
+                    newStr = ", ".join(bookmarkArr)
                     user.profile.bookmark = newStr
                 elif user.profile.bookmark == "":
                     user.profile.bookmark = bookmarkName
