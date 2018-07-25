@@ -8,6 +8,12 @@
 
 {% block content %}
 
+{% if reviews == None %}
+<div class="container" style="height: 70vh;">
+{% else %}
+<div class="container" style="min-height: 70vh;">
+{% endif %}
+
     <div class="row">
         <div class="col-lg-3 profile-sidebar">
             <div id="user-info">
@@ -66,7 +72,9 @@
             <h1>Here's all the reviews you've left so far!</h1>
             <div class="card mt-4" id="main-card">
                 {% if reviews == None %}
-                    <h3>No reviews yet!</h3>
+                    <div class="row">
+                        <h3 style="text-align: center; margin-left: 20px;">No reviews yet!</h3>
+                    </div>
                 {% else %}
                     {% for i in reviews %}
                         <div class="list-group-item">
@@ -149,5 +157,6 @@
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}

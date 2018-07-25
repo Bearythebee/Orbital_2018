@@ -8,6 +8,12 @@
 
 {% block content %}
 
+{% if show_list == None %}
+<div class="container" style="height: 70vh;">
+{% else %}
+<div class="container" style="min-height: 70vh;">
+{% endif %}
+
     <div class="row">
         <div class="col-lg-3 profile-sidebar">
             <div id="user-info">
@@ -18,7 +24,6 @@
                     <i class="material-icons password-icon">settings</i>Change password
                 </button>
 
-                <!-- Modal -->
                 <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -57,8 +62,8 @@
 
             <div class="profile-menu">
                 <nav class="nav flex-column nav-pills nav-tabs">
-                    <a class="nav-link select-box" href="../profiles"><i class="material-icons navbar-icon">rate_review</i>Reviews</a>
-                    <a class="nav-link" href="#"><i class="material-icons navbar-icon">collections_bookmark</i>Bookmarks</a>
+                    <a class="nav-link" href="../profiles"><i class="material-icons navbar-icon">rate_review</i>Reviews</a>
+                    <a class="nav-link select-box" href="bookmarks"><i class="material-icons navbar-icon">collections_bookmark</i>Bookmarks</a>
                 </nav>
             </div>
         </div>
@@ -69,7 +74,7 @@
 
                 <div class="row">
                     {% if show_list == None %}
-                        <h1>No bookmarks yet!</h1>
+                        <h3 style="text-align: center; margin-left: 20px;">No bookmarks yet!</h3>
                     {% else %}
                         {% for show in show_list %}
                             <div class="col-sm-4">
@@ -86,5 +91,6 @@
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}

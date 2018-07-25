@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,15 +68,14 @@
 			</nav>
 
 			{% endif %}
-			
+
 			</div>
 		</div>
 	</header><!-- #header -->
 
-	<div class="container">
-		{% block content %}
-		{% endblock %}
-	</div>
+    {% block content %}
+    {% endblock %}
+
 
 	<!--==========================
 	Footer

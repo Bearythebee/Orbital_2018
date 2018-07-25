@@ -25,6 +25,7 @@ def index(request):
                 else:
                     user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName
                 user.save()
+                return HttpResponseRedirect(request.path_info)
             else:
                 print("form not valid")
 

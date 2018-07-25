@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #header {
   padding: 20px 0;
-  height: 80px;
+  height: 13vh;
   position: relative;
   left: 0;
   top: 0;
@@ -382,6 +382,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 0 0 30px 0;
   color: #eee;
   font-size: 14px;
+  height: 18vh;
 }
 
 #footer .copyright {

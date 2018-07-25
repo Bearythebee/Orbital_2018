@@ -51,6 +51,9 @@
 			{% if user.is_authenticated %}
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
+					<li style="color:#fff; margin:2.5px 15px 0 0;" data-toggle="modal" data-target="#howtoModal">
+                        <a href="javascript:void(0);">How To</a>
+					</li>
                     <li style="color:#fff; margin:2.5px 15px 0 0;"><strong>Welcome, <a href="/profiles">{{ user.get_full_name }}</a></strong></li>
 					<li>
 						<form class="logout-link"action="/accounts/logout/" method="post">
@@ -59,9 +62,6 @@
                                     "color:#fff;
                                     background-color:transparent"><strong>Logout</strong></button>
 						</form>
-					</li>
-					<li style="color:#fff; margin:2.5px 15px 0 0;" data-toggle="modal" data-target="#howtoModal">
-                        <a href="javascript:void(0);">How To</a>
 					</li>
 				</ul>
 			</nav>
@@ -72,11 +72,11 @@
 
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
-					<li><a href="/accounts/login">Login</a></li>
-                    <li><a href="/accounts/signup">Sign up</a></li>
-					<li data-toggle="modal" data-target="#howtoModal">
+                    <li data-toggle="modal" data-target="#howtoModal">
                         <a href="javascript:void(0);">How To</a>
 					</li>
+					<li><a href="/accounts/login">Login</a></li>
+                    <li><a href="/accounts/signup">Sign up</a></li>
 				</ul>
 			</nav>
 
@@ -137,6 +137,9 @@
                 {% for msg in messages %}
                     alert('{{msg}}');
                 {% endfor %}
+            {% endif %}
+            {% if checkBookmark == True %}
+                $('{{modalName}}').modal('show');
             {% endif %}
         });
 	</script>
