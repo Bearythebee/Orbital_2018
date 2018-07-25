@@ -13,11 +13,7 @@
 
 .bookmark-filled {
     color: #18c33a;
-    float:right;
-    position:relative;
-    top:-37px;
     font-size: 36px;
-    right: 12px;
 }
 
 .bookmark-empty {
