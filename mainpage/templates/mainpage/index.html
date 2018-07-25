@@ -118,11 +118,11 @@
                                                 {% if show.name in bookmarked %}
                                                     <form method="POST">
                                                         {% csrf_token %}
-                                                        <label for="bookmark-action" style="display:none"></label>
-                                                        <input id="bookmark-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+                                                        <label for="bookmarked-action" style="display:none"></label>
+                                                        <input id="bookmarked-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-														 <label for="modalAction" style="display:none"></label>
-                                                        <input id="modalAction" type="text" name="modalName" value="#actionModal" style="display:none">
+														 <label for="modalAction2" style="display:none"></label>
+                                                        <input id="modalAction2" type="text" name="modalName" value="#actionModal" style="display:none">
 
                                                         <button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
                                                     </form>
@@ -248,7 +248,16 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                                <form method="POST">
+													{% csrf_token %}
+													<label for="bookmarked-romance" style="display:none"></label>
+													<input id="bookmarked-romance" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+
+													<label for="modalAction2" style="display:none"></label>
+													<input id="modalAction2" type="text" name="modalName" value="#romanceModal" style="display:none">
+
+													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+												</form>
                                             {% else %}
                                                 <form method="POST">
                                                     {% csrf_token %}
@@ -370,7 +379,16 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                                <form method="POST">
+													{% csrf_token %}
+													<label for="bookmarked-comedy" style="display:none"></label>
+													<input id="bookmarked-comedy" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+
+													 <label for="modalComedy2" style="display:none"></label>
+													<input id="modalComedy2" type="text" name="modalName" value="#comedyModal" style="display:none">
+
+													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+												</form>
                                             {% else %}
                                                 <form method="POST">
                                                     {% csrf_token %}
@@ -492,7 +510,16 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                                <form method="POST">
+													{% csrf_token %}
+													<label for="bookmarked-crime" style="display:none"></label>
+													<input id="bookmarked-crime" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+
+													 <label for="modalCrime2" style="display:none"></label>
+													<input id="modalCrime2" type="text" name="modalName" value="#crimeModal" style="display:none">
+
+													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+												</form>
                                             {% else %}
                                                 <form method="POST">
                                                     {% csrf_token %}
@@ -614,7 +641,16 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                                <form method="POST">
+													{% csrf_token %}
+													<label for="bookmarked-thriller" style="display:none"></label>
+													<input id="bookmarked-thriller" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+
+													 <label for="modalThriller2" style="display:none"></label>
+													<input id="modalThriller2" type="text" name="modalName" value="#thrillerModal" style="display:none">
+
+													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+												</form>
                                             {% else %}
                                                 <form method="POST">
                                                     {% csrf_token %}
@@ -736,7 +772,16 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <i class="bookmark-filled material-icons">bookmark</i>
+                                                <form method="POST">
+													{% csrf_token %}
+													<label for="bookmarked-reality" style="display:none"></label>
+													<input id="bookmarked-reality" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
+
+													 <label for="modalReality2" style="display:none"></label>
+													<input id="modalReality2" type="text" name="modalName" value="#realityModal" style="display:none">
+
+													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+												</form>
                                             {% else %}
                                                 <form method="POST">
                                                     {% csrf_token %}
