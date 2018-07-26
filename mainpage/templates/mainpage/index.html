@@ -127,7 +127,7 @@
                                                         <button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
                                                     </form>
                                                 {% else %}
-                                                    <form method="POST">
+                                                    <form method="POST" id="actionBookmarkForm">
                                                         {% csrf_token %}
                                                         <label for="bookmark-action" style="display:none"></label>
                                                         <input id="bookmark-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">

@@ -130,6 +130,8 @@
 
 	<!-- Template Main Javascript File -->
 	<script src="{% static 'mainpage/mainscript.js' %}"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
 
 	<script type="text/javascript">
         $( document ).ready(function() {
@@ -138,6 +140,9 @@
                     alert('{{msg}}');
                 {% endfor %}
             {% endif %}
+            $('#actionBookmarkForm').ajaxForm(function() {
+                alert("Bookmark successful");
+            });
         });
 	</script>
 
