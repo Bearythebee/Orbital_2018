@@ -71,10 +71,9 @@
         <div class="col-lg-9">
             <h1>Bookmarks</h1>
             <div class="card mt-4" id="main-card">
-
-                <div class="row">
+                <div class="row" style="padding:40px">
                     {% if shows == None %}
-                        <h3 style="text-align: center; margin-left: 20px;">No bookmarks yet!</h3>
+                        <h1>No bookmarks yet!</h1>
                     {% else %}
                         {% for show in shows %}
                             <div class="col-sm-4">
@@ -88,8 +87,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-            </div>
-            {% if shows.has_other_pages %}
+                {% if shows.has_other_pages %}
                     <nav aria-label="bookmark_pages">
                         <ul class="pagination justify-content-center">
                             {% if shows.has_previous %}
@@ -142,8 +140,8 @@
                         </ul>
                     </nav>
                 {% endif %}
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
