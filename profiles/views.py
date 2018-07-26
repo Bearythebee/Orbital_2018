@@ -66,7 +66,7 @@ def bookmarks(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(show_list, 3)
+    paginator = Paginator(show_list, 6)
     try:
         shows = paginator.page(page)
     except PageNotAnInteger:

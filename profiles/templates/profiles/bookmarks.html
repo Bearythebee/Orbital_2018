@@ -79,7 +79,7 @@
                         {% for show in shows %}
                             <div class="col-sm-4">
                                 <div class="card" style="margin:10px">
-                                    <a href="{{ show.get_absolute_url }}"><img class="card-img-top" src="{% static show.display %}" alt="image.jpg"style="width:150;height:250px;"></a>
+                                    <a href ="{{ show.get_absolute_url }}"><img class="card-img-top" src="{% static show.display %}" alt="image.jpg"style="width:150;height:250px;"></a>
                                     <div class="card-body" style="background:black;width:150;height:50px;padding:10px">
                                         <h5 class="card-title text-center"><a href="{{ show.get_absolute_url }}" style="color:#fff;font-size:10px">{{show.name}}</a></h5>
                                     </div>
