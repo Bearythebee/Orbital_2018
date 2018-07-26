@@ -88,7 +88,8 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                {% if shows.has_other_pages %}
+            </div>
+            {% if shows.has_other_pages %}
                     <nav aria-label="bookmark_pages">
                         <ul class="pagination justify-content-center">
                             {% if shows.has_previous %}
@@ -141,7 +142,6 @@
                         </ul>
                     </nav>
                 {% endif %}
-            </div>
         </div>
     </div>
 </div>
