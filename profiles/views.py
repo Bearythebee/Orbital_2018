@@ -12,6 +12,7 @@ def reviews(request):
     owner_name = request.user.username
     review_list = ShowReview.objects.filter(username = owner_name)
     checkError = False
+    samePassword = False
 
     if review_list.count() == 0:
         review_list = None
@@ -19,10 +20,16 @@ def reviews(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('../profiles')
+            old_password = form.cleaned_data['old_password']
+            new_password = form.cleaned_data['new_password1']
+            if old_password == new_password:
+                messages.error(request, "Your old and new password cannot be the same!")
+                checkError = True
+            else:
+                user = form.save()
+                update_session_auth_hash(request, user)  # Important!
+                messages.success(request, 'Your password was successfully updated!')
+                return redirect('../profiles')
         else:
             checkError = True
     else:
@@ -79,6 +86,7 @@ def bookmarks(request):
         'shows': shows,
         'form': form,
         'checkError': checkError,
+        'show_list': show_list,
     }
 
     return render(request, 'profiles/bookmarks.html', context)
