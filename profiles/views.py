@@ -59,6 +59,16 @@ def bookmarks(request):
         for i in bookmark_list:
             show_list.append(TVShow.objects.get(name=i))
 
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(show_list, 6)
+        try:
+            shows = paginator.page(page)
+        except PageNotAnInteger:
+            shows = paginator.page(1)
+        except EmptyPage:
+            shows = paginator.page(paginator.num_pages)
+
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -70,16 +80,6 @@ def bookmarks(request):
             checkError = True
     else:
         form = PasswordChangeForm(request.user)
-
-    page = request.GET.get('page', 1)
-
-    paginator = Paginator(show_list, 6)
-    try:
-        shows = paginator.page(page)
-    except PageNotAnInteger:
-        shows = paginator.page(1)
-    except EmptyPage:
-        shows = paginator.page(paginator.num_pages)
 
     context = {
         'bookmarks': bookmark_list,
