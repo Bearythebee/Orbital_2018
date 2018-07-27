@@ -52,7 +52,7 @@ def ShowDetailView(request,pk):
         # get reviews by those users, excluding shows reviewed by the request user
         other_users_reviews = ShowReview.objects.filter(username__in=other_members_usernames).exclude(name__in=user_reviews_show_name)
         other_users_reviews_show_name = set(map(lambda x: x.name, other_users_reviews))
-        unwatched = TVShow.objects.filter(name__in=other_users_reviews_show_name)[:5]
+        unwatched = TVShow.objects.filter(name__in=other_users_reviews_show_name)[:6]
 
         context = {
             'tvshow': show,
