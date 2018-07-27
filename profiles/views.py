@@ -53,8 +53,31 @@ def bookmarks(request):
 
     show_list = []
 
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('../profiles/bookmarks')
+        else:
+            checkError = True
+    else:
+        form = PasswordChangeForm(request.user)
+
+
     if len(bookmarked) == 0:
         show_list = None
+        shows = None
+
+        context = {
+        'bookmarks': bookmark_list,
+        'shows': shows,
+        'form': form,
+        'checkError': checkError,
+        'show_list': show_list,
+        }
+        
     else:
         for i in bookmark_list:
             show_list.append(TVShow.objects.get(name=i))
@@ -69,25 +92,13 @@ def bookmarks(request):
         except EmptyPage:
             shows = paginator.page(paginator.num_pages)
 
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('../profiles/bookmarks')
-        else:
-            checkError = True
-    else:
-        form = PasswordChangeForm(request.user)
-
-    context = {
+        context = {
         'bookmarks': bookmark_list,
         'shows': shows,
         'form': form,
         'checkError': checkError,
         'show_list': show_list,
-    }
+        }
 
     return render(request, 'profiles/bookmarks.html', context)
 
