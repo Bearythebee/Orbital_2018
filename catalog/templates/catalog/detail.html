@@ -27,7 +27,7 @@
 
             {% if user.is_authenticated %}
                 {% if tvshow.name in bookmarked %}
-                    <form method="POST" action="" id="{{tvshow.id}}" class="showBookmarkForm">
+                    <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
                         {% csrf_token %}
                         <label for="bookmarked-show" style="display:none"></label>
                         <input id="bookmarked-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
@@ -35,7 +35,7 @@
                         <button type="submit">Bookmarked</button>
                     </form>
                 {% else %}
-                    <form method="POST" action="" id="{{tvshow.id}}" class="showBookmarkForm">
+                    <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
                         {% csrf_token %}
                         <label for="bookmark-show" style="display:none"></label>
                         <input id="bookmark-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
