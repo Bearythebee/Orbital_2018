@@ -110,7 +110,7 @@
       </div>
       <!-- /.container synopsis-->
         <div class="mx-auto" style="width:200px; margin-bottom: 30px;">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#watchModal" style="width:150px;height: 50px">Watch?</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#watchModal" style="width:150px;height: 50px">Wanna watch?</button>
 
             <div class="modal fade" id="watchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -126,11 +126,11 @@
                   </div>
                   <div class="modal-footer">
                     {% if user.is_authenticated %}
-                      <button type="button" class="btn btn-primary" onclick="unhide('rec','watch')">Another show?</button></a>
+                      <button type="button" class="btn btn-primary" onclick="unhide('rec','watch')">Other recommended shows</button></a>
                     {% else %}
-                      <a href="../{{ next_id }}"><button type="button" class="btn btn-primary">Another show?</button></a>
+                      <a href="../{{ next_id }}"><button type="button" class="btn btn-primary">Other recommended shows</button></a>
                     {% endif %}
-                    <button type="button" class="btn btn-success" data-dismiss="modal">And we're done!</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                   </div>
                 </div>
                 <div id = "rec" class="modal-content" style="display:none">

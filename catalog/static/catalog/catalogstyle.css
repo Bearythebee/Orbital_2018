@@ -3,16 +3,16 @@
     border: none;
     cursor:pointer;
     position: relative;
-    top: -20px;
+    top: -40px;
 }
 
 .bookmark-filled {
-    color: #18c33a;
-    font-size: 36px;
+    color: ##007BFF;
+    font-size: 48px;
 }
 
 .bookmark-empty {
-    font-size: 36px;
+    font-size: 48px;
 }
 
 body {
