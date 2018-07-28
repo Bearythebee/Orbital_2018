@@ -15,15 +15,16 @@
 .bookmark-btn {
     background-color: transparent;
     border: none;
-    margin-top: 10px;
     cursor:pointer;
+    position: relative;
+    top: -40px;
 }
 
 .bookmark-filled {
-    color: #18c33a;
-    font-size: 36px;
+    color: ##007BFF;
+    font-size: 48px;
 }
 
 .bookmark-empty {
-    font-size: 36px;
+    font-size: 48px;
 }
