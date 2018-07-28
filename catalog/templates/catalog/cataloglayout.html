@@ -205,18 +205,18 @@
 
 			  function bookmark_show(id, icon) {
 				$.ajax({
-					url : "",
+					url : "bookmark/",
 					type : "POST",
 					data: { bookmark : id},
 
 					success : function(response_data) {
 						if (response_data['result'] == "add") {
-							$(icon).removeClass('bookmark-empty').addClass('bookmark-filled');
-							$(icon).html("bookmark");
+							<!--$(icon).removeClass('bookmark-empty').addClass('bookmark-filled');-->
+							<!--$(icon).html("bookmark");-->
 							alert("Bookmark added.");
 						} else {
-							$(icon).removeClass('bookmark-filled').addClass('bookmark-empty');
-							$(icon).html("bookmark_border");
+							<!--$(icon).removeClass('bookmark-filled').addClass('bookmark-empty');-->
+							<!--$(icon).html("bookmark_border");-->
 							alert("Bookmark removed.");
 						}
 					},
