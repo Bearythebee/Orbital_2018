@@ -295,15 +295,13 @@ jQuery(document).ready(function( $ ) {
 
         success : function(response_data) {
             if (response_data['result'] == "add") {
-                alert("Bookmark added.");
-                console.log(response_data);
                 $(icon).removeClass('bookmark-empty').addClass('bookmark-filled');
                 $(icon).html("bookmark");
+                alert("Bookmark added.");
             } else {
-                alert("Bookmark removed.");
-                console.log(response_data);
                 $(icon).removeClass('bookmark-filled').addClass('bookmark-empty');
                 $(icon).html("bookmark_border");
+                alert("Bookmark removed.");
             }
         },
     });
