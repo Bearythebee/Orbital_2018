@@ -15,14 +15,38 @@
           <div class="col-lg-3">
             <h1 class="my-4">{{tvshow.name}}</h1>
               <h4 style="color:black">IMDb Rating: {{ rating }} / 10</h4>
-      <nav class="nav flex-column nav-pills nav-tabs">
-        <a class="nav-link active" href="#">Synopsis</a>
-        <a class="nav-link" href="review/" style="color:black">Review</a>
-      </nav>
+          <nav class="nav flex-column nav-pills nav-tabs">
+            <a class="nav-link active" href="#">Synopsis</a>
+            <a class="nav-link" href="review/" style="color:black">Review</a>
+          </nav>
             <div class="fb-share-button" 
               data-href="{{request.build_absolute_uri}}" 
-              data-layout="button_count">
+              data-layout="button_count" style="margin-top: 10px">
             </div>
+
+
+            {% if user.is_authenticated %}
+                {% if show.name in bookmarked %}
+                    <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
+                        {% csrf_token %}
+                        <label for="bookmarked-show" style="display:none"></label>
+                        <input id="bookmarked-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
+
+                        <button type="submit">Bookmarked</button>
+                    </form>
+                {% else %}
+                    <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
+                        {% csrf_token %}
+                        <label for="bookmark-show" style="display:none"></label>
+                        <input id="bookmark-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
+
+                        <button type="submit">Bookmark</button>
+                    </form>
+                {% endif %}
+            {% endif %}
+
+
+
 
           </div>
           <!-- /.col-lg-3 -->

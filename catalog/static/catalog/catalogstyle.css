@@ -1,3 +1,21 @@
+.bookmark-btn {
+    background-color: transparent;
+    border: none;
+    float:right;
+    position:relative;
+    top:-37px;
+    cursor:pointer;
+}
+
+.bookmark-filled {
+    color: #18c33a;
+    font-size: 36px;
+}
+
+.bookmark-empty {
+    font-size: 36px;
+}
+
 body {
   background: #fff;
   color: #666666;

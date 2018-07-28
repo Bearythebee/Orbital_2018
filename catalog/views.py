@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.views import generic
 from .models import Show , Cluster
@@ -32,6 +33,9 @@ def ShowDetailView(request,pk):
     else:
         next_id = str(int(pk) + 1)
 
+    user = request.user
+    bookmark_list = []
+
     if request.user.is_authenticated:
         owner_name = request.user.username
         # request user reviewed shows
@@ -54,6 +58,9 @@ def ShowDetailView(request,pk):
         other_users_reviews_show_name = set(map(lambda x: x.name, other_users_reviews))
         unwatched = TVShow.objects.filter(name__in=other_users_reviews_show_name)[:6]
 
+        bookmarked = user.profile.bookmark
+        bookmark_list = bookmarked.split(", ")
+
         context = {
             'tvshow': show,
             'total': total,
@@ -61,6 +68,7 @@ def ShowDetailView(request,pk):
             'rating': rating,
             'next_id': next_id,
             'shows': unwatched,
+            'bookmarked': bookmark_list
         }
         return render(request, 'catalog/detail.html', context)
     else:
@@ -70,5 +78,36 @@ def ShowDetailView(request,pk):
             'id': id,
             'rating': rating,
             'next_id': next_id,
+            'bookmarked': bookmark_list
         }
         return render(request, 'catalog/detail.html', context)
+
+def bookmarkView(request, pk):
+    if request.user.is_authenticated:
+        user = request.user
+        if request.method == "POST":
+            showId = request.POST.get('bookmark')
+            bookmarkName = TVShow.objects.get(id=showId).name
+            bookmarkArr = user.profile.bookmark.split(", ")
+            bookmark_result = "add"
+
+            response_data = {}
+
+            if bookmarkName in bookmarkArr:
+                bookmarkArr.remove(bookmarkName)
+                newStr = ", ".join(bookmarkArr)
+                user.profile.bookmark = newStr
+                bookmark_result = "remove"
+            elif user.profile.bookmark == "":
+                user.profile.bookmark = bookmarkName
+            else:
+                user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName
+            user.save()
+
+            response_data['result'] = bookmark_result
+            response_data['title'] = bookmarkName
+
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
