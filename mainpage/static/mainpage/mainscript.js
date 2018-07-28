@@ -289,7 +289,7 @@ jQuery(document).ready(function( $ ) {
 
   function bookmark_show(id, icon) {
     $.ajax({
-        url : "/mainpage/",
+        url : "",
         type : "POST",
         data: { bookmark : id},
 
