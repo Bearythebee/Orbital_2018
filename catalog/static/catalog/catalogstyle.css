@@ -1,9 +1,6 @@
 .bookmark-btn {
     background-color: transparent;
     border: none;
-    float:right;
-    position:relative;
-    top:-37px;
     cursor:pointer;
 }
 
