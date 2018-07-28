@@ -298,10 +298,12 @@ jQuery(document).ready(function( $ ) {
                 alert("Bookmark added.");
                 console.log(response_data);
                 $(icon).removeClass('bookmark-empty').addClass('bookmark-filled');
+                $(icon).html("bookmark");
             } else {
                 alert("Bookmark removed.");
                 console.log(response_data);
                 $(icon).removeClass('bookmark-filled').addClass('bookmark-empty');
+                $(icon).html("bookmark_border");
             }
         },
     });
