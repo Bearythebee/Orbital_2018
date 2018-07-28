@@ -17,11 +17,11 @@
     border: none;
     cursor:pointer;
     position: relative;
-    top: -40px;
+    top: -30px;
 }
 
 .bookmark-filled {
-    color: ##007BFF;
+    color: #007BFF;
     font-size: 48px;
 }
 
