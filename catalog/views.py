@@ -8,6 +8,7 @@ from review.models import ShowReview
 from mainpage.models import TVShow
 from django.contrib.auth.models import User
 from review.suggestions import update_clusters2
+from django.http import HttpResponse
 
 # Create your views here.
 
