@@ -19,28 +19,31 @@
             <a class="nav-link active" href="#">Synopsis</a>
             <a class="nav-link" href="review/" style="color:black">Review</a>
           </nav>
-            <div class="fb-share-button" data-href="{{request.build_absolute_uri}}" data-layout="button_count" style="margin-top: 10px">
-                {% if user.is_authenticated %}
-                    {% if tvshow.name in bookmarked %}
-                        <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
-                            {% csrf_token %}
-                            <label for="bookmarked-show" style="display:none"></label>
-                            <input id="bookmarked-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
-
-                            <button class="bookmark-btn float-right" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
-                        </form>
-                    {% else %}
-                        <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
-                            {% csrf_token %}
-                            <label for="bookmark-show" style="display:none"></label>
-                            <input id="bookmark-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
-
-                            <button class="bookmark-btn float-right" type="submit"><i class="bookmark-empty material-icons">bookmark_border</i></button>
-                        </form>
-                    {% endif %}
-                {% endif %}
+            <div class="fb-share-button"
+                 data-href="{{request.build_absolute_uri}}"
+                 data-layout="button_count"
+                 style="margin-top: 10px">
             </div>
 
+            {% if user.is_authenticated %}
+                {% if tvshow.name in bookmarked %}
+                    <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
+                        {% csrf_token %}
+                        <label for="bookmarked-show" style="display:none"></label>
+                        <input id="bookmarked-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
+
+                        <button class="bookmark-btn float-right" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+                    </form>
+                {% else %}
+                    <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
+                        {% csrf_token %}
+                        <label for="bookmark-show" style="display:none"></label>
+                        <input id="bookmark-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
+
+                        <button class="bookmark-btn float-right" type="submit"><i class="bookmark-empty material-icons">bookmark_border</i></button>
+                    </form>
+                {% endif %}
+            {% endif %}
 
 
 
