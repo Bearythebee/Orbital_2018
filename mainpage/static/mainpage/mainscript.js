@@ -169,75 +169,143 @@ jQuery(document).ready(function( $ ) {
     loop: true,
     items: 1
   });
-  
-	// Script to prevent default form submission to perform validation for log in and sign up modals
 
-	$("#login-submit").on("click", function(event) {
-		event.preventDefault();
-		
-		var errorMsg = "";
-		
-		if ($("#login-email").val() == "") {
-			errorMsg += "Email field cannot be empty or the email address is invalid.<br>";
-		}
-		
-		if ($("#login-password").val() == "") {
-			errorMsg += "Password field cannot be empty.<br>";
-		}
-		
-		if (errorMsg != "") {
-			errorMsg = '<div class="alert alert-danger" role="alert">' + errorMsg + '</div>';
-			$("#login-error").html(errorMsg);
-		} else {
-			$("#login-submit").off("click");
-			alert("Log in successful!");
-		}
-	});
+  // Scrolling animation for navbar
+  function checkScroll(){
+    var startY = $(window).height(); //The point where the navbar changes in px
 
-	$("#signup-submit").on("click", function(event) {
-		event.preventDefault();
-		
-		var errorMsg = "";
-		
-		if ($("#signup-name").val() == "") {
-			errorMsg += "Name field cannot be empty.<br>";
-		}
-		
-		if ($("#signup-email").val() == "") {
-			errorMsg += "Email field cannot be empty or the email address is invalid.<br>";
-		}
-		
-		if ($("#signup-password").val() == "") {
-			errorMsg += "Password field cannot be empty.<br>";
-		}
-		
-		if (errorMsg != "") {
-			errorMsg = '<div class="alert alert-danger" role="alert">' + errorMsg + '</div>';
-			$("#signup-error").html(errorMsg);
-		} else {
-			$("#signup-submit").off("click");
-			alert("Sign up successful!");
-		}
-	});
-	// end script
+    if ($(window).scrollTop() > startY) {
+        $('#header').addClass("header-scrolled");
+    } else {
+        $('#header').removeClass("header-scrolled");
+    }
+}
+
+  if ($('#header').length > 0){
+    $(window).on("scroll load resize", function(){
+        checkScroll();
+    });
+  }
+
+  $(function() {
 
 
-	// Scrolling animation for navbar 
-	function checkScroll(){
-		var startY = $(window).height(); //The point where the navbar changes in px
+    // This function gets cookie with a given name
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
 
-		if ($(window).scrollTop() > startY) {
-			$('#header').addClass("header-scrolled");
-		} else {
-			$('#header').removeClass("header-scrolled");
-		}
-	}
+    /*
+    The functions below will create a header with csrftoken
+    */
 
-	if ($('#header').length > 0){
-		$(window).on("scroll load resize", function(){
-			checkScroll();
-		});
-	}
-  
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    function sameOrigin(url) {
+        // test that a given url is a same-origin URL
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
+    }
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                // Send the token to same-origin, relative URLs only.
+                // Send the token only if the method warrants CSRF protection
+                // Using the CSRFToken value acquired earlier
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+  });
+
+
+
+  $('.actionBookmarkForm').on('submit', function(event){
+    event.preventDefault();
+    var id = this.id;
+    var icon = $(this).find("i");
+    bookmark_show(id, icon);
+  });
+
+  $('.romanceBookmarkForm').on('submit', function(event){
+    event.preventDefault();
+    var id = this.id;
+    var icon = $(this).find("i");
+    bookmark_show(id, icon);
+  });
+
+  $('.comedyBookmarkForm').on('submit', function(event){
+    event.preventDefault();
+    var id = this.id;
+    var icon = $(this).find("i");
+    bookmark_show(id, icon);
+  });
+
+  $('.crimeBookmarkForm').on('submit', function(event){
+    event.preventDefault();
+    var id = this.id;
+    var icon = $(this).find("i");
+    bookmark_show(id, icon);
+  });
+
+  $('.thrillerBookmarkForm').on('submit', function(event){
+    event.preventDefault();
+    var id = this.id;
+    var icon = $(this).find("i");
+    bookmark_show(id, icon);
+  });
+
+  $('.realityBookmarkForm').on('submit', function(event){
+    event.preventDefault();
+    var id = this.id;
+    var icon = $(this).find("i");
+    bookmark_show(id, icon);
+  });
+
+  function bookmark_show(id, icon) {
+    $.ajax({
+        url : "/mainpage/",
+        type : "POST",
+        data: { bookmark : id},
+
+        success : function(response_data) {
+            if (response_data['result'] == "add") {
+                alert("Bookmark added.");
+                console.log(response_data);
+                $(icon).removeClass('bookmark-empty').addClass('bookmark-filled');
+            } else {
+                alert("Bookmark removed.");
+                console.log(response_data);
+                $(icon).removeClass('bookmark-filled').addClass('bookmark-empty');
+            }
+        },
+    });
+  };
+
 });
 

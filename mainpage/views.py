@@ -1,8 +1,11 @@
+import json
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import TVShow
 from .forms import BookmarkForm
 from django.contrib import messages
+
 
 # Create your views here.
 def index(request):
@@ -17,27 +20,56 @@ def index(request):
 
     if request.user.is_authenticated:
         user = request.user
-        if request.method == 'POST':
-            form = BookmarkForm(request.POST)
-            if form.is_valid():
-                bookmarkName = form.cleaned_data['bookmark']
-                bookmarkArr = user.profile.bookmark.split(", ")
+        if request.method == "POST":
+            showId = request.POST.get('bookmark')
+            bookmarkName = TVShow.objects.get(id=showId).name
+            bookmarkArr = user.profile.bookmark.split(", ")
+            bookmark_result = "add"
 
-                if bookmarkName in bookmarkArr:
-                    bookmarkArr.remove(bookmarkName)
-                    newStr = ", ".join(bookmarkArr)
-                    user.profile.bookmark = newStr
-                    messages.success(request, "Bookmark removed.")
-                elif user.profile.bookmark == "":
-                    user.profile.bookmark = bookmarkName
-                    messages.success(request, "Bookmark added.")
-                else:
-                    user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName
-                    messages.success(request, "Bookmark added.")
-                user.save()
-                return HttpResponseRedirect(request.path_info)
+            response_data = {}
+
+            if bookmarkName in bookmarkArr:
+                bookmarkArr.remove(bookmarkName)
+                newStr = ", ".join(bookmarkArr)
+                user.profile.bookmark = newStr
+                bookmark_result = "remove"
+            elif user.profile.bookmark == "":
+                user.profile.bookmark = bookmarkName
             else:
-                messages.error(request, "There was an error in adding your bookmark.")
+                user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName
+            user.save()
+
+            response_data['result'] = bookmark_result
+            response_data['title'] = bookmarkName
+
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+
+    # if request.user.is_authenticated:
+    #     user = request.user
+    #     if request.method == 'POST':
+    #         form = BookmarkForm(request.POST)
+    #         if form.is_valid():
+    #             bookmarkName = form.cleaned_data['bookmark']
+    #             bookmarkArr = user.profile.bookmark.split(", ")
+    #
+    #             if bookmarkName in bookmarkArr:
+    #                 bookmarkArr.remove(bookmarkName)
+    #                 newStr = ", ".join(bookmarkArr)
+    #                 user.profile.bookmark = newStr
+    #                 messages.success(request, "Bookmark removed.")
+    #             elif user.profile.bookmark == "":
+    #                 user.profile.bookmark = bookmarkName
+    #                 messages.success(request, "Bookmark added.")
+    #             else:
+    #                 user.profile.bookmark = user.profile.bookmark + ", " + bookmarkName
+    #                 messages.success(request, "Bookmark added.")
+    #             user.save()
+    #             return HttpResponseRedirect(request.path_info)
+    #         else:
+    #             messages.error(request, "There was an error in adding your bookmark.")
 
         bookmarked = user.profile.bookmark
         bookmark_list = bookmarked.split(", ")
