@@ -116,7 +116,7 @@
 
                                             {% if user.is_authenticated %}
                                                 {% if show.name in bookmarked %}
-                                                    <form method="POST" action="/mainpage/" id="{{show.id}}" class="actionBookmarkForm">
+                                                    <form method="POST" action="" id="{{show.id}}" class="actionBookmarkForm">
                                                         {% csrf_token %}
                                                         <label for="bookmarked-action" style="display:none"></label>
                                                         <input id="bookmarked-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -124,7 +124,7 @@
                                                         <button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
                                                     </form>
                                                 {% else %}
-                                                    <form method="POST" action="/mainpage/" id="{{show.id}}" class="actionBookmarkForm">
+                                                    <form method="POST" action="" id="{{show.id}}" class="actionBookmarkForm">
                                                         {% csrf_token %}
                                                         <label for="bookmark-action" style="display:none"></label>
                                                         <input id="bookmark-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -242,7 +242,7 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="romanceBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="romanceBookmarkForm">
 													{% csrf_token %}
 													<label for="bookmarked-romance" style="display:none"></label>
 													<input id="bookmarked-romance" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -250,7 +250,7 @@
 													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="romanceBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="romanceBookmarkForm">
                                                     {% csrf_token %}
                                                     <label for="bookmark-romance" style="display:none"></label>
                                                     <input id="bookmark-romance" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -367,7 +367,7 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="comedyBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="comedyBookmarkForm">
 													{% csrf_token %}
 													<label for="bookmarked-comedy" style="display:none"></label>
 													<input id="bookmarked-comedy" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -375,7 +375,7 @@
 													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="comedyBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="comedyBookmarkForm">
                                                     {% csrf_token %}
                                                     <label for="bookmark-comedy" style="display:none"></label>
                                                     <input id="bookmark-comedy" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -492,7 +492,7 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="crimeBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="crimeBookmarkForm">
 													{% csrf_token %}
 													<label for="bookmarked-crime" style="display:none"></label>
 													<input id="bookmarked-crime" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -500,7 +500,7 @@
 													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="crimeBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="crimeBookmarkForm">
                                                     {% csrf_token %}
                                                     <label for="bookmark-crime" style="display:none"></label>
                                                     <input id="bookmark-crime" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -617,7 +617,7 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="thrillerBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="thrillerBookmarkForm">
 													{% csrf_token %}
 													<label for="bookmarked-thriller" style="display:none"></label>
 													<input id="bookmarked-thriller" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -625,7 +625,7 @@
 													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="thrillerBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="thrillerBookmarkForm">
                                                     {% csrf_token %}
                                                     <label for="bookmark-thriller" style="display:none"></label>
                                                     <input id="bookmark-thriller" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -742,7 +742,7 @@
 
                                         {% if user.is_authenticated %}
                                             {% if show.name in bookmarked %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="realityBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="realityBookmarkForm">
 													{% csrf_token %}
 													<label for="bookmarked-reality" style="display:none"></label>
 													<input id="bookmarked-reality" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
@@ -750,7 +750,7 @@
 													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
-                                                <form method="POST" action="/mainpage/" id="{{show.id}}" class="realityBookmarkForm">
+                                                <form method="POST" action="" id="{{show.id}}" class="realityBookmarkForm">
                                                     {% csrf_token %}
                                                     <label for="bookmark-reality" style="display:none"></label>
                                                     <input id="bookmark-reality" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
