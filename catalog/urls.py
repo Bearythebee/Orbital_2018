@@ -5,5 +5,4 @@ from . import views
 urlpatterns = [
 	url(r'^show/(?P<pk>\d+)/$',views.ShowDetailView,name='show-detail'),
     url(r'^show/(?P<pk>\d+)/review/', include("review.urls")),
-    url(r'^show/(?P<pk>\d+)/bookmark/', views.bookmarkView, name='bookmarkView'),
 ]
