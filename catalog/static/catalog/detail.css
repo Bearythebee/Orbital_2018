@@ -11,3 +11,20 @@
 	width: 100%;
 	height: 100%;
 }
+
+.bookmark-btn {
+    background-color: transparent;
+    border: none;
+    cursor:pointer;
+    position: relative;
+    top: -30px;
+}
+
+.bookmark-filled {
+    color: #007BFF;
+    font-size: 48px;
+}
+
+.bookmark-empty {
+    font-size: 48px;
+}
