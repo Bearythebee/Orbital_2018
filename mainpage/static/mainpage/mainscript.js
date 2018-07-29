@@ -216,11 +216,9 @@ jQuery(document).ready(function( $ ) {
             if (response_data['result'] == "add") {
                 $(icon).removeClass('bookmark-empty').addClass('bookmark-filled');
                 $(icon).html("bookmark");
-                alert("Bookmark added.");
             } else {
                 $(icon).removeClass('bookmark-filled').addClass('bookmark-empty');
                 $(icon).html("bookmark_border");
-                alert("Bookmark removed.");
             }
         },
     });

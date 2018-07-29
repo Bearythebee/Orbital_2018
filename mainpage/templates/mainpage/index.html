@@ -10,7 +10,7 @@
 			<img id="intro-bg" src="{% static 'img/introbackground.jpg' %}" alt="background.jpg">
 			<div class="intro-content">
 				<h2>Couch Potatoes</h2>
-				<p>The only site you need for show recommendations</p>
+				<p>The only site you'll need for show recommendations</p>
 				<a href="#genre" class="btn-get-started scrollto">Click here to get started</a>
 			</div>
 		</div>
@@ -121,7 +121,7 @@
                                                         <label for="bookmarked-action" style="display:none"></label>
                                                         <input id="bookmarked-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-                                                        <button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+                                                        <button class="bookmark-btn" type="submit" title="Remove bookmark"><i class="bookmark-filled material-icons">bookmark</i></button>
                                                     </form>
                                                 {% else %}
                                                     <form method="POST" action="" id="{{show.id}}" class="actionBookmarkForm">
@@ -129,7 +129,7 @@
                                                         <label for="bookmark-action" style="display:none"></label>
                                                         <input id="bookmark-action" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-                                                        <button class="bookmark-btn" type="submit"><i class="bookmark-empty material-icons">bookmark_border</i></button>
+                                                        <button class="bookmark-btn" type="submit" title="Bookmark"><i class="bookmark-empty material-icons">bookmark_border</i></button>
                                                     </form>
                                                 {% endif %}
                                             {% endif %}
@@ -247,7 +247,7 @@
 													<label for="bookmarked-romance" style="display:none"></label>
 													<input id="bookmarked-romance" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+													<button class="bookmark-btn" type="submit" title="Remove bookmark"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
                                                 <form method="POST" action="" id="{{show.id}}" class="romanceBookmarkForm">
@@ -255,7 +255,7 @@
                                                     <label for="bookmark-romance" style="display:none"></label>
                                                     <input id="bookmark-romance" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-                                                    <button class="bookmark-btn" type="submit">
+                                                    <button class="bookmark-btn" type="submit" title="Bookmark">
                                                         <i class="bookmark-empty material-icons">bookmark_border</i>
                                                     </button>
                                                 </form>
@@ -372,7 +372,7 @@
 													<label for="bookmarked-comedy" style="display:none"></label>
 													<input id="bookmarked-comedy" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+													<button class="bookmark-btn" type="submit" title="Remove bookmark"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
                                                 <form method="POST" action="" id="{{show.id}}" class="comedyBookmarkForm">
@@ -380,7 +380,7 @@
                                                     <label for="bookmark-comedy" style="display:none"></label>
                                                     <input id="bookmark-comedy" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-                                                    <button class="bookmark-btn" type="submit">
+                                                    <button class="bookmark-btn" type="submit" title="Bookmark">
                                                         <i class="bookmark-empty material-icons">bookmark_border</i>
                                                     </button>
                                                 </form>
@@ -497,7 +497,7 @@
 													<label for="bookmarked-crime" style="display:none"></label>
 													<input id="bookmarked-crime" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+													<button class="bookmark-btn" type="submit" title="Remove bookmark"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
                                                 <form method="POST" action="" id="{{show.id}}" class="crimeBookmarkForm">
@@ -505,7 +505,7 @@
                                                     <label for="bookmark-crime" style="display:none"></label>
                                                     <input id="bookmark-crime" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-                                                    <button class="bookmark-btn" type="submit">
+                                                    <button class="bookmark-btn" type="submit" title="Bookmark">
                                                         <i class="bookmark-empty material-icons">bookmark_border</i>
                                                     </button>
                                                 </form>
@@ -622,7 +622,7 @@
 													<label for="bookmarked-thriller" style="display:none"></label>
 													<input id="bookmarked-thriller" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+													<button class="bookmark-btn" type="submit" title="Remove bookmark"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
                                                 <form method="POST" action="" id="{{show.id}}" class="thrillerBookmarkForm">
@@ -630,7 +630,7 @@
                                                     <label for="bookmark-thriller" style="display:none"></label>
                                                     <input id="bookmark-thriller" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-                                                    <button class="bookmark-btn" type="submit">
+                                                    <button class="bookmark-btn" type="submit" title="Bookmark">
                                                         <i class="bookmark-empty material-icons">bookmark_border</i>
                                                     </button>
                                                 </form>
@@ -747,7 +747,7 @@
 													<label for="bookmarked-reality" style="display:none"></label>
 													<input id="bookmarked-reality" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-													<button class="bookmark-btn" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+													<button class="bookmark-btn" type="submit" title="Remove bookmark"><i class="bookmark-filled material-icons">bookmark</i></button>
 												</form>
                                             {% else %}
                                                 <form method="POST" action="" id="{{show.id}}" class="realityBookmarkForm">
@@ -755,7 +755,7 @@
                                                     <label for="bookmark-reality" style="display:none"></label>
                                                     <input id="bookmark-reality" type="text" name="bookmark" value="{{ show.name }}" style="display:none">
 
-                                                    <button class="bookmark-btn" type="submit">
+                                                    <button class="bookmark-btn" type="submit" title="Bookmark">
                                                         <i class="bookmark-empty material-icons">bookmark_border</i>
                                                     </button>
                                                 </form>

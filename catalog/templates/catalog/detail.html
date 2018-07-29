@@ -32,7 +32,7 @@
                         <label for="bookmarked-show" style="display:none"></label>
                         <input id="bookmarked-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
 
-                        <button class="bookmark-btn float-right" type="submit"><i class="bookmark-filled material-icons">bookmark</i></button>
+                        <button class="bookmark-btn float-right" type="submit" title="Remove bookmark"><i class="bookmark-filled material-icons">bookmark</i></button>
                     </form>
                 {% else %}
                     <form method="POST" action="bookmark/" id="{{tvshow.id}}" class="showBookmarkForm">
@@ -40,7 +40,7 @@
                         <label for="bookmark-show" style="display:none"></label>
                         <input id="bookmark-show" type="text" name="bookmark" value="{{ tvshow.name }}" style="display:none">
 
-                        <button class="bookmark-btn float-right" type="submit"><i class="bookmark-empty material-icons">bookmark_border</i></button>
+                        <button class="bookmark-btn float-right" type="submit" title="Bookmark"><i class="bookmark-empty material-icons">bookmark_border</i></button>
                     </form>
                 {% endif %}
             {% endif %}
