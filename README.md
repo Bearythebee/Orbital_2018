@@ -132,3 +132,61 @@ We aim to enhance the features we have implemented. Below is a list of our aims 
 
 # **Milestone 3 (30/07/2018)**
 
+### **Extensions implemented**
+
+Our web app is built on HTML, CSS, JavaScript, MySQL and the Python Django framework. After milestone 2, our aim was to implement extensions to our web app to enhance its functionality and usability. Below is a list of the extensions implemented, followed by a description:
+
+**1. Social media integration (using Facebook and Google+)**
+
+Users can now login using their existing Facebook/Google+ accounts instead of being forced to sign up for a user account specific to our web app. Many of the features are reliant on the user being logged in, hence it is crucial for logging in and signing up to be seamless and efficient. 
+
+We understand that users can fall into two categories - short term and long term. While we do not force users to sign up/log in, having an account would greatly increase the features available to them. Hence, social media integration would make this more efficient.
+
+**2. Sharing of shows to Facebook**
+
+If logged in via Facebook, users can share the shows that interest them with their friends. If the user is not logged in, he/she would be requested to first login via Facebook, before they can start sharing the shows. 
+
+The “share” button is included in the details page of the show below the navigation bar. The show’s title, a short summary and the image of the show would be shared to the user’s Facebook timeline if they choose to. On Facebook, clicking on the post would lead the user’s Facebook friends to our web app.
+
+**3. Profile page for users**
+
+Logged in users would be able to view their own profile page, which features a list of the reviews they have left, shows they have bookmarked and a “change password” feature.
+
+**4. Bookmarking of shows**
+
+Logged in users can also bookmark shows they like for easier access in the future. It functions as a “save for later” feature, or for users to save shows that they really like. Bookmarks will be featured in the profile page of the user and there are two ways for users to bookmark shows. 
+
+Firstly, a bookmark button is featured on the list of shows popping up in the main page, on the right hand side. After bookmarking a show, the bookmark button will turn green, and clicking the button again would remove the bookmark. Secondly, a bookmark button is also featured in the details page of each show, just beside the Facebook sharing button. It functions the same way as the first way, except that the button would turn blue instead after bookmarking.
+
+**5. Machine learning using k-means clustering**
+
+Although users won’t be able to outrightly use this feature, our web app’s machine learning function comes into play when recommending shows to users. When finally deciding whether to watch a show or not, clicking on the “Other recommended shows” button would feature a list of recommended shows (provided the user is logged in). The shows are recommended using k-means clustering based on ratings of previous shows left through reviews. 
+
+For example, User A and an unknown number of other users left similar ratings on the same shows. The model will identify them as having ‘similar’ tastes and they will all be clustered in the same cluster. Shows that the other users have watched, which User A has not watched, will be recommended to User A. This applies to all users in the same cluster. 
+
+As of now, as we are in no danger of scalability issues, we have set the model to recluster users with every 3 reviews left on our webapp and/or every time a new user is created. Also, number of clusters used will increase as the number of users increase, specifically number of clusters, k = (number of users /10) + 2.
+
+There are however, a few limitations to this model.
+We are assuming that users that have left similar ratings on a particular show will have similar tastes (in TV shows).
+If a user has more than one review on the same show, only one review will be used.
+
+### **Problems encountered and bugs squashed**
+
+Integrating social media and our web app was a challenge for us, even more so on our deployed website compared to local deployment. This is due to the confusing URL redirects that each social media credentials require that works differently on our local website and on our deployed website.
+
+In addition, with regards to the Facebook sharing feature, the Facebook scraper still uses the old tags. As such, we have to manually scrape the shows (by visiting every single show) to update the tags, which added on to the work we had to do.
+
+Furthermore, after integrating social media to our web app, some users feedbacked that it was not functioning, while others had no problems with it. We found out that the problem lied in website security, and that features involving social media would not work due to “website not secure” and “invalid certificate” problems. 
+
+After looking into it, we found out that adding “https://” was crucial for the said features to work. However, as we are hosting on the heroku platform, we did not have a work-around for the “https://” to be automatically generated into the URL without incurring monetary costs. Hence, users have to type it in the first time they are accessing the web app. 
+
+Finally, designing forms ( e.g. review form) proved to be a problem when using django forms. Django forms are styled in their own way, and have limited designs. Although it was not a major problem, it proved to be a tedious and recurring one. 
+
+
+### **User testing**
+
+Iterative usability testing was carried out amongst people that fit the demographic (youths, millennials and young adults). Our web app was continuously tested before the launch amongst a group of 5 users.
+
+The documentation of the testing process can be found here: 
+https://drive.google.com/open?id=1wi9GFnxa34tMEMEL8yLih9PW_uyTVN8mAr6TiVZ1chU
+
